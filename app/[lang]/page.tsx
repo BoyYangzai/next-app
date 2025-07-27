@@ -4,10 +4,17 @@ import { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store";
 import { useTranslation } from "@/i18n/client";
-import ThemeSelector from "@/components/ThemeSelector";
-import Counter from "@/components/Counter";
-import Navigation from "@/components/Navigation";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { ThemeSelector } from "@/components/theme";
+import { Counter } from "@/components/counter";
+import { Navigation, LanguageSwitcher } from "@/components/ui";
+import {
+  CounterDisplay,
+  CounterControls,
+  CounterHistory,
+  CounterStats,
+  CrossPageStateTest,
+  MobXFeaturesDemo,
+} from "@/components/counter";
 
 const HomePage: FC = observer(() => {
   const { global } = useStore();
@@ -159,15 +166,104 @@ const HomePage: FC = observer(() => {
 
         {global.currentPage === "counter" && (
           <div className="space-y-8">
-            {/* 功能2: MobX 状态管理测试 */}
-            <section className="theme-card p-8 lg:p-12">
-              <Counter />
+            {/* 功能2: MobX 跨组件状态管理测试 */}
+            <section className="space-y-8">
+              {/* 页面标题 */}
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-foreground mb-4">
+                  🔢 {t("counter.title")}
+                </h2>
+                <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
+                  {t("counter.subtitle")}
+                </p>
+              </div>
+
+              {/* 主要计数器显示 - 独立组件 */}
+              <CounterDisplay />
+
+              {/* 控制面板和跨页面测试 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <CounterControls />
+                <CrossPageStateTest />
+              </div>
+
+              {/* 统计和历史 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <CounterStats />
+                <CounterHistory />
+              </div>
+
+              {/* MobX 特性说明 */}
+              <MobXFeaturesDemo />
+
+              {/* 测试说明 */}
+              <div className="theme-card p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+                  🧪 MobX 跨组件测试验证
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-card-foreground">
+                      ✅ 已验证的 MobX 特性:
+                    </h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <span>多个组件使用 observer() 包裹</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <span>计数器显示与控制完全分离</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <span>状态变化自动同步到所有组件</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <span>计算属性实时更新统计数据</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <span>跨页面状态保持</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-card-foreground">
+                      🔬 测试方法:
+                    </h4>
+                    <ol className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex gap-2">
+                        <span className="font-medium text-primary">1.</span>
+                        <span>点击增加/减少按钮，观察所有组件同步更新</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="font-medium text-primary">2.</span>
+                        <span>切换到主题页面，再返回，状态依然保持</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="font-medium text-primary">3.</span>
+                        <span>刷新页面，状态从 localStorage 恢复</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="font-medium text-primary">4.</span>
+                        <span>查看历史记录自动增长</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="font-medium text-primary">5.</span>
+                        <span>观察统计数据实时计算</span>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
             </section>
           </div>
         )}
       </main>
 
-      {/* 底部状态栏 */}
+      {/* 底部状态栏 - 展示全局状态同步 */}
       <footer className="theme-card border-t mt-12 bg-card/50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 text-sm">
@@ -205,6 +301,15 @@ const HomePage: FC = observer(() => {
                   {t("language.switch")}:{" "}
                   <strong className="text-card-foreground">
                     {global.stats.languageChanges} {t("footer.times")}
+                  </strong>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>
+                  页面导航:{" "}
+                  <strong className="text-card-foreground">
+                    {global.stats.pageNavigations} 次
                   </strong>
                 </span>
               </div>

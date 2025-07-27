@@ -1,12 +1,10 @@
 import { ReactNode } from "react";
 import { Languages } from "@/i18n/settings";
-import Providers from "@/components/Providers";
+import Providers from "@/components/providers/Providers";
 
 interface LanguageLayoutProps {
   children: ReactNode;
-  params: Promise<{
-    lang: Languages;
-  }>;
+  params: Promise<{ lang: Languages }>;
 }
 
 export default async function LanguageLayout({

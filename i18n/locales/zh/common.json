@@ -4,10 +4,10 @@
     "subtitle": "基于 Tailwind CSS 4.x 的现代主题系统 & MobX 状态管理演示"
   },
   "navigation": {
-    "themeTest": "主题测试",
-    "themeTestDesc": "Tailwind 多主题切换",
+    "themeTest": "主题",
+    "themeTestDesc": "多主题切换",
     "mobxTest": "MobX测试",
-    "mobxTestDesc": "状态管理响应式"
+    "mobxTestDesc": "状态管理"
   },
   "theme": {
     "title": "Tailwind CSS 4.x 多主题系统",
@@ -62,13 +62,50 @@
     }
   },
   "counter": {
-    "title": "MobX 计数器测试",
-    "subtitle": "测试 MobX 状态管理的响应式更新和数据持久化",
+    "title": "MobX 状态管理测试",
+    "subtitle": "通过多个独立组件验证 MobX 的跨组件响应式状态管理能力",
+    "display": {
+      "title": "计数器显示",
+      "description": "当前计数器值，自动响应状态变化"
+    },
+    "controls": {
+      "title": "计数器控制",
+      "increment": "增加",
+      "decrement": "减少",
+      "reset": "重置"
+    },
+    "history": {
+      "title": "操作历史",
+      "empty": "还没有操作历史"
+    },
+    "stats": {
+      "title": "实时统计",
+      "totalOps": "总操作数",
+      "maxValue": "最大值",
+      "minValue": "最小值",
+      "avgValue": "平均值"
+    },
+    "crossPage": {
+      "title": "跨页面状态",
+      "currentPage": "当前页面",
+      "pageChanges": "页面切换次数"
+    },
+    "mobx": {
+      "title": "MobX 特性",
+      "reactive": "响应式状态更新",
+      "computed": "计算属性自动计算",
+      "persistent": "状态持久化存储",
+      "crossComponent": "跨组件状态共享",
+      "testGuide": {
+        "title": "测试指南",
+        "step1": "点击按钮观察所有组件同步更新",
+        "step2": "切换页面验证状态保持",
+        "step3": "刷新页面确认状态恢复",
+        "step4": "查看统计数据实时变化"
+      }
+    },
     "currentValue": "当前计数值",
-    "increment": "增加",
-    "decrement": "减少",
     "quickActions": "快速操作",
-    "reset": "重置",
     "stateInfo": "MobX 状态信息",
     "counterValue": "计数器值",
     "currentTheme": "当前主题",
