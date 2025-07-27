@@ -1,6 +1,8 @@
 // theme/themeConfig.ts
 import type { ThemeConfig } from "antd";
-import { PRIMARY_COLOR } from "../tailwind.config";
+
+// 直接定义颜色常量，避免导入问题
+const PRIMARY_COLOR = "#3B82F6";
 
 const theme: ThemeConfig = {
   token: {},

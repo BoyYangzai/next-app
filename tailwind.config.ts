@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
-export const PRIMARY_COLOR = "#FD2D55";
+export const PRIMARY_COLOR = "#3B82F6";
+export const SECONDARY_COLOR = "#10B981";
 
 const config: Config = {
   content: [
@@ -8,21 +9,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
-      backgroundColor: {
-        bg: "#F4F5F7",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-      colors: {
-        primary: PRIMARY_COLOR,
-      },
-    },
-  },
+  darkMode: "class", // 启用 class 模式的暗色主题
   plugins: [],
 };
 export default config;

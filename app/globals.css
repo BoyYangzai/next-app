@@ -1,38 +1,208 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Tailwind CSS 4.x 主题定义 */
+@theme {
+  /* 基础颜色映射到 CSS 变量 */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* 基础层 - 定义实际的颜色值 */
+@layer base {
+  /* 默认主题 (亮色) */
+  :root,
+  html {
+    --background: #ffffff;
+    --foreground: #020817;
+    --card: #ffffff;
+    --card-foreground: #020817;
+    --primary: #3b82f6;
+    --primary-foreground: #eff6ff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #3b82f6;
+  }
+
+  /* 暗色主题 - 使用类名 */
+  .theme-dark {
+    --background: #020817;
+    --foreground: #f8fafc;
+    --card: #0f172a;
+    --card-foreground: #f8fafc;
+    --primary: #60a5fa;
+    --primary-foreground: #1e293b;
+    --secondary: #1e293b;
+    --secondary-foreground: #f8fafc;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #1e293b;
+    --accent-foreground: #f8fafc;
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #60a5fa;
+  }
+
+  /* 蓝色主题 */
+  .theme-blue {
+    --background: #eff6ff;
+    --foreground: #1e3a8a;
+    --card: #ffffff;
+    --card-foreground: #1e3a8a;
+    --primary: #2563eb;
+    --primary-foreground: #eff6ff;
+    --secondary: #dbeafe;
+    --secondary-foreground: #1e3a8a;
+    --muted: #dbeafe;
+    --muted-foreground: #4b5563;
+    --accent: #93c5fd;
+    --accent-foreground: #1e3a8a;
+    --border: #bfdbfe;
+    --input: #bfdbfe;
+    --ring: #2563eb;
+  }
+
+  /* 绿色主题 */
+  .theme-green {
+    --background: #f0fdf4;
+    --foreground: #14532d;
+    --card: #ffffff;
+    --card-foreground: #14532d;
+    --primary: #22c55e;
+    --primary-foreground: #f0fdf4;
+    --secondary: #dcfce7;
+    --secondary-foreground: #14532d;
+    --muted: #dcfce7;
+    --muted-foreground: #4b5563;
+    --accent: #86efac;
+    --accent-foreground: #14532d;
+    --border: #bbf7d0;
+    --input: #bbf7d0;
+    --ring: #22c55e;
+  }
+
+  /* 紫色主题 */
+  .theme-purple {
+    --background: #faf5ff;
+    --foreground: #581c87;
+    --card: #ffffff;
+    --card-foreground: #581c87;
+    --primary: #9333ea;
+    --primary-foreground: #faf5ff;
+    --secondary: #ede9fe;
+    --secondary-foreground: #581c87;
+    --muted: #ede9fe;
+    --muted-foreground: #4b5563;
+    --accent: #c4b5fd;
+    --accent-foreground: #581c87;
+    --border: #ddd6fe;
+    --input: #ddd6fe;
+    --ring: #9333ea;
+  }
+
+  /* 橙色主题 */
+  .theme-orange {
+    --background: #fff7ed;
+    --foreground: #9a3412;
+    --card: #ffffff;
+    --card-foreground: #9a3412;
+    --primary: #f97316;
+    --primary-foreground: #fff7ed;
+    --secondary: #fed7aa;
+    --secondary-foreground: #9a3412;
+    --muted: #fed7aa;
+    --muted-foreground: #4b5563;
+    --accent: #fdba74;
+    --accent-foreground: #9a3412;
+    --border: #fb923c;
+    --input: #fb923c;
+    --ring: #f97316;
+  }
+
+  /* 红色主题 */
+  .theme-red {
+    --background: #fef2f2;
+    --foreground: #991b1b;
+    --card: #ffffff;
+    --card-foreground: #991b1b;
+    --primary: #ef4444;
+    --primary-foreground: #fef2f2;
+    --secondary: #fecaca;
+    --secondary-foreground: #991b1b;
+    --muted: #fecaca;
+    --muted-foreground: #4b5563;
+    --accent: #fca5a5;
+    --accent-foreground: #991b1b;
+    --border: #f87171;
+    --input: #f87171;
+    --ring: #ef4444;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* 全局基础样式 */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* 确保 html 元素有默认主题，避免 hydration 错误 */
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+    /* 防止主题切换时的闪烁 */
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
 }
 
+/* 自定义组件样式 */
+@layer components {
+  .theme-card {
+    @apply bg-card text-card-foreground border border-border rounded-lg shadow-sm;
+  }
+
+  .theme-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 
+           px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .theme-input {
+    @apply bg-input border border-border text-foreground 
+           px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-ring;
+  }
+}
+
+/* 动画效果 */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .animate-theme-transition {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
   }
 }
-
-.bg-clip-text {
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
