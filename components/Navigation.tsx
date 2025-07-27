@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store";
+import { useTranslation } from "@/i18n/client";
 
 interface NavigationProps {
   className?: string;
@@ -8,57 +9,58 @@ interface NavigationProps {
 
 const Navigation: FC<NavigationProps> = observer(({ className = "" }) => {
   const { global } = useStore();
+  const { t } = useTranslation();
 
-  const pages = [
+  const navItems = [
     {
       key: "home",
-      name: "主题测试",
+      label: t("navigation.themeTest"),
+      description: t("navigation.themeTestDesc"),
       icon: "🎨",
-      description: "Tailwind 多主题切换",
+      color: "bg-blue-500/10 text-blue-600 border-blue-200",
     },
     {
       key: "counter",
-      name: "MobX测试",
+      label: t("navigation.mobxTest"),
+      description: t("navigation.mobxTestDesc"),
       icon: "🔢",
-      description: "状态管理响应式",
+      color: "bg-green-500/10 text-green-600 border-green-200",
     },
   ];
 
   return (
     <nav className={`${className}`}>
-      <div className="flex space-x-2 p-2 bg-muted rounded-xl shadow-inner">
-        {pages.map((page) => (
+      <div className="flex flex-col sm:flex-row gap-2">
+        {navItems.map((item) => (
           <button
-            key={page.key}
-            onClick={() => global.setCurrentPage(page.key)}
+            key={item.key}
+            onClick={() => global.setCurrentPage(item.key)}
             className={`
-              group relative flex items-center space-x-3 px-6 py-3 rounded-lg 
-              font-medium transition-all duration-300 animate-theme-transition
+              group relative px-4 py-3 rounded-lg border transition-all duration-300
+              hover:scale-105 hover:shadow-md active:scale-95 min-w-[140px]
               ${
-                global.currentPage === page.key
-                  ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                  : "text-muted-foreground hover:text-foreground hover:bg-background/50 hover:scale-102"
+                global.currentPage === item.key
+                  ? `${item.color} shadow-md font-medium`
+                  : "bg-muted/50 text-muted-foreground border-border hover:bg-muted hover:text-foreground"
               }
             `}
+            type="button"
           >
-            <span className="text-xl">{page.icon}</span>
-            <div className="text-left">
-              <div className="font-semibold">{page.name}</div>
-              <div
-                className={`text-xs transition-colors duration-200 ${
-                  global.currentPage === page.key
-                    ? "text-primary-foreground/80"
-                    : "text-muted-foreground/80"
-                }`}
-              >
-                {page.description}
+            <div className="flex items-center space-x-2">
+              <span className="text-lg flex-shrink-0">{item.icon}</span>
+              <div className="flex flex-col items-start min-w-0">
+                <span className="text-sm font-medium whitespace-nowrap truncate max-w-[100px]">
+                  {item.label}
+                </span>
+                <span className="text-xs opacity-75 whitespace-nowrap truncate max-w-[100px]">
+                  {item.description}
+                </span>
               </div>
-            </div>
 
-            {/* 活跃指示器 */}
-            {global.currentPage === page.key && (
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse" />
-            )}
+              {global.currentPage === item.key && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-pulse" />
+              )}
+            </div>
           </button>
         ))}
       </div>

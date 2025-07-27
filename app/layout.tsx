@@ -1,12 +1,17 @@
-"use client";
 import "./globals.css";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { ConfigProvider as AntdConfigProvider } from "antd";
-import antdTheme from "../theme/themeConfig";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { StoreContext, Store } from "../store";
+import { Metadata, Viewport } from "next";
 
-const queryClient = new QueryClient();
+export const metadata: Metadata = {
+  title: "功能测试实验室 - Feature Testing Lab",
+  description: "基于 Tailwind CSS 4.x 的现代主题系统 & MobX 状态管理演示",
+  keywords: ["Next.js", "Tailwind CSS", "MobX", "TypeScript", "i18n"],
+  authors: [{ name: "Development Team" }],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({
   children,
@@ -14,18 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="w-full min-h-screen">
-        <StoreContext.Provider value={Store}>
-          <AntdRegistry>
-            <AntdConfigProvider theme={antdTheme}>
-              <QueryClientProvider client={queryClient}>
-                {children}
-              </QueryClientProvider>
-            </AntdConfigProvider>
-          </AntdRegistry>
-        </StoreContext.Provider>
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="w-full min-h-screen">{children}</body>
     </html>
   );
 }

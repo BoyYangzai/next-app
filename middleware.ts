@@ -1,39 +1,35 @@
-import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { languages, fallbackLng } from "./i18n/settings";
 
-// 暂时禁用保护路由，允许直接访问主页
-const protectedRoutes: string[] = []; // ["/", "/onboarding"];
-const publicRoutes = ["/login", "/signup"];
+export function middleware(request: NextRequest) {
+  // 检查路径是否已经包含语言前缀
+  const pathname = request.nextUrl.pathname;
 
-export default async function middleware(req: NextRequest) {
-  const path = req.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
-  const isPublicRoute = publicRoutes.includes(path);
-
-  // 3. Decrypt the session from the cookie - 使用 await 获取 cookies
-  const cookieStore = await cookies();
-  const cookie = cookieStore.get("session")?.value;
-  // const session = await decrypt(cookie);
-
-  // 5. Redirect to /login if the user is not authenticated
-  // if (isProtectedRoute && !session?.userId) {
-  if (isProtectedRoute && !cookie) {
-    return NextResponse.redirect(new URL("/login", req.nextUrl));
+  // 检查是否是根路径
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL(`/${fallbackLng}`, request.url));
   }
 
-  // 6. Redirect to /dashboard if the user is authenticated
-  if (
-    isPublicRoute &&
-    // session?.userId &&
-    !req.nextUrl.pathname.startsWith("/")
-  ) {
-    return NextResponse.redirect(new URL("/", req.nextUrl));
+  // 检查路径是否以支持的语言开头
+  const pathnameIsMissingLocale = languages.every(
+    (locale) =>
+      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+  );
+
+  // 如果路径缺少语言前缀，重定向到默认语言
+  if (pathnameIsMissingLocale) {
+    return NextResponse.redirect(
+      new URL(`/${fallbackLng}${pathname}`, request.url),
+    );
   }
 
   return NextResponse.next();
 }
 
-// Routes Middleware should not run on
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: [
+    // 排除静态文件和 API 路由
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.gif$|.*\\.svg$).*)",
+  ],
 };

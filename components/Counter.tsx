@@ -1,186 +1,194 @@
 import { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store";
+import { useTranslation } from "@/i18n/client";
 
-interface CounterProps {
-  className?: string;
-}
+interface CounterProps {}
 
-const Counter: FC<CounterProps> = observer(({ className = "" }) => {
+const Counter: FC<CounterProps> = observer(() => {
   const { global } = useStore();
+  const { t } = useTranslation();
 
   return (
-    <div className={`space-y-8 ${className}`}>
+    <div className="space-y-8">
+      {/* 标题部分 */}
       <div className="text-center">
-        <h2 className="text-4xl font-bold text-foreground mb-3">
-          🔢 MobX 计数器测试
+        <h2 className="text-3xl font-bold text-foreground mb-4">
+          🔢 {t("counter.title")}
         </h2>
-        <p className="text-muted-foreground text-lg">
-          测试 MobX 状态管理的响应式更新和数据持久化
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          {t("counter.subtitle")}
         </p>
       </div>
 
       {/* 计数器显示 */}
-      <div className="theme-card p-12 text-center animate-theme-transition">
-        <div className="relative">
-          <div className="text-8xl font-bold text-primary mb-4 animate-pulse">
+      <div className="text-center">
+        <div className="inline-flex items-center space-x-4">
+          <span className="text-muted-foreground font-medium">
+            {t("counter.currentValue")}:
+          </span>
+          <div className="text-6xl font-bold text-primary bg-primary/10 px-8 py-4 rounded-2xl border-2 border-primary/20">
             {global.counter}
-          </div>
-          <div className="text-xl text-muted-foreground">当前计数值</div>
-
-          {/* 计数器变化指示器 */}
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-xs font-bold text-accent-foreground">
-              {global.counter >= 0 ? "+" : "-"}
-            </span>
           </div>
         </div>
       </div>
 
-      {/* 主要操作按钮 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* 操作按钮 */}
+      <div className="flex flex-wrap justify-center gap-4">
         <button
-          onClick={global.increment}
-          className="theme-button py-4 px-8 text-lg font-semibold rounded-xl 
-                   hover:scale-105 active:scale-95 transform transition-all duration-200
-                   shadow-lg hover:shadow-xl"
+          onClick={global.decrement}
+          className="theme-button bg-red-500 text-white hover:bg-red-600 px-8 py-3 text-lg font-semibold"
+          type="button"
         >
-          <span className="flex items-center justify-center gap-3">
-            <span className="text-2xl">➕</span>
-            <span>增加 (+1)</span>
-          </span>
+          ➖ {t("counter.decrement")}
         </button>
 
         <button
-          onClick={global.decrement}
-          className="theme-button py-4 px-8 text-lg font-semibold rounded-xl 
-                   hover:scale-105 active:scale-95 transform transition-all duration-200
-                   shadow-lg hover:shadow-xl"
+          onClick={global.increment}
+          className="theme-button bg-green-500 text-white hover:bg-green-600 px-8 py-3 text-lg font-semibold"
+          type="button"
         >
-          <span className="flex items-center justify-center gap-3">
-            <span className="text-2xl">➖</span>
-            <span>减少 (-1)</span>
-          </span>
+          ➕ {t("counter.increment")}
+        </button>
+
+        <button
+          onClick={global.reset}
+          className="theme-button bg-gray-500 text-white hover:bg-gray-600 px-8 py-3 text-lg font-semibold"
+          type="button"
+        >
+          🔄 {t("counter.reset")}
         </button>
       </div>
 
-      {/* 快速操作按钮 */}
+      {/* 快速操作 */}
       <div className="theme-card p-6">
-        <h3 className="font-semibold text-card-foreground mb-4 text-center">
-          ⚡ 快速操作
+        <h3 className="text-lg font-semibold text-card-foreground mb-4 text-center">
+          ⚡ {t("counter.quickActions")}
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <button
-            onClick={() => global.addValue(10)}
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/80
-                     px-4 py-3 rounded-lg font-medium transition-all duration-200
-                     hover:scale-105 shadow-sm hover:shadow-md"
-          >
-            +10
-          </button>
-
-          <button
-            onClick={() => global.addValue(100)}
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/80
-                     px-4 py-3 rounded-lg font-medium transition-all duration-200
-                     hover:scale-105 shadow-sm hover:shadow-md"
-          >
-            +100
-          </button>
-
-          <button
-            onClick={() => global.addValue(-10)}
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/80
-                     px-4 py-3 rounded-lg font-medium transition-all duration-200
-                     hover:scale-105 shadow-sm hover:shadow-md"
-          >
-            -10
-          </button>
-
-          <button
-            onClick={global.reset}
-            className="bg-red-500 hover:bg-red-600 text-white
-                     px-4 py-3 rounded-lg font-medium transition-all duration-200
-                     hover:scale-105 shadow-sm hover:shadow-md"
-          >
-            🔄 重置
-          </button>
+        <div className="flex flex-wrap justify-center gap-3">
+          {[+10, +5, +1, -1, -5, -10].map((value) => (
+            <button
+              key={value}
+              onClick={() => global.addValue(value)}
+              className={`
+                px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105 active:scale-95
+                ${
+                  value > 0
+                    ? "bg-green-100 text-green-700 hover:bg-green-200 border border-green-300"
+                    : "bg-red-100 text-red-700 hover:bg-red-200 border border-red-300"
+                }
+              `}
+              type="button"
+            >
+              {value > 0 ? `+${value}` : value}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* MobX 状态信息 */}
-      <div className="theme-card p-6 space-y-4">
-        <h3 className="font-bold text-card-foreground flex items-center gap-2">
-          📊 MobX 状态信息
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">计数器值:</span>
-              <span className="font-bold text-primary text-lg">
-                {global.stats.counterValue}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="theme-card p-6">
+          <h3 className="text-lg font-semibold text-card-foreground mb-4">
+            📊 {t("counter.stateInfo")}
+          </h3>
+          <div className="space-y-3 text-sm">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">
+                {t("counter.counterValue")}:
+              </span>
+              <span className="font-medium text-card-foreground">
+                {global.counter}
               </span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">当前主题:</span>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">
+                {t("counter.currentTheme")}:
+              </span>
               <span className="font-medium text-card-foreground">
-                {global.stats.currentTheme}
+                {global.currentTheme.name}
               </span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">主题切换:</span>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">
+                {t("counter.themeSwitch")}:
+              </span>
               <span className="font-medium text-card-foreground">
-                {global.stats.themeChanges} 次
+                {global.stats.themeChanges} {t("counter.times")}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">
+                {t("counter.currentPage")}:
+              </span>
+              <span className="font-medium text-card-foreground">
+                {global.currentPage}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">
+                {t("counter.availableThemes")}:
+              </span>
+              <span className="font-medium text-card-foreground">
+                {global.stats.availableThemes}
               </span>
             </div>
           </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">当前页面:</span>
-              <span className="font-medium text-card-foreground">
-                {global.stats.currentPage}
+        </div>
+
+        <div className="theme-card p-6">
+          <h3 className="text-lg font-semibold text-card-foreground mb-4">
+            💾 {t("counter.dataPersistence")}
+          </h3>
+          <div className="space-y-3 text-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">localStorage:</span>
+              <span className="text-green-600 font-medium">
+                ✅ {t("counter.enabled")}
               </span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">可用主题:</span>
-              <span className="font-medium text-card-foreground">
-                {global.stats.availableThemes} 种
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">MobX 响应式:</span>
+              <span className="text-green-600 font-medium">
+                ✅ {t("counter.enabled")}
               </span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">数据持久化:</span>
-              <span className="text-green-600 font-medium">✅ 已启用</span>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">主题同步:</span>
+              <span className="text-green-600 font-medium">
+                ✅ {t("counter.enabled")}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 测试说明 */}
+      {/* 测试指南 */}
       <div className="theme-card p-6">
-        <h3 className="font-bold text-card-foreground mb-4 flex items-center gap-2">
-          🧪 测试指南
+        <h3 className="text-lg font-semibold text-card-foreground mb-4">
+          📋 {t("counter.testGuide")}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-card-foreground mb-2">
-              基础功能测试:
+            <h4 className="font-medium text-card-foreground mb-3">
+              🔧 {t("counter.basicTests")}
             </h4>
-            <ul className="text-sm text-muted-foreground space-y-1 leading-relaxed">
-              <li>• 点击 +/- 按钮测试计数器响应</li>
-              <li>• 使用快速操作按钮测试批量更新</li>
-              <li>• 观察数值变化的实时反馈</li>
-              <li>• 重置按钮测试状态重置功能</li>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• {t("counter.testPoints.clickButtons")}</li>
+              <li>• {t("counter.testPoints.quickActions")}</li>
+              <li>• {t("counter.testPoints.observeChanges")}</li>
+              <li>• {t("counter.testPoints.testReset")}</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-card-foreground mb-2">
-              状态管理测试:
+            <h4 className="font-medium text-card-foreground mb-3">
+              🔄 {t("counter.stateTests")}
             </h4>
-            <ul className="text-sm text-muted-foreground space-y-1 leading-relaxed">
-              <li>• 切换到主题页面再返回，数据保持</li>
-              <li>• 刷新浏览器页面，数据从 localStorage 恢复</li>
-              <li>• 切换主题，计数器状态不受影响</li>
-              <li>• 所有操作都是响应式的，UI 立即更新</li>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• {t("counter.testPoints.switchPages")}</li>
+              <li>• {t("counter.testPoints.refreshPage")}</li>
+              <li>• {t("counter.testPoints.switchTheme")}</li>
+              <li>• {t("counter.testPoints.reactiveUpdate")}</li>
             </ul>
           </div>
         </div>

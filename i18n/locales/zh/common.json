@@ -1,0 +1,116 @@
+{
+  "app": {
+    "title": "功能测试实验室",
+    "subtitle": "基于 Tailwind CSS 4.x 的现代主题系统 & MobX 状态管理演示"
+  },
+  "navigation": {
+    "themeTest": "主题测试",
+    "themeTestDesc": "Tailwind 多主题切换",
+    "mobxTest": "MobX测试",
+    "mobxTestDesc": "状态管理响应式"
+  },
+  "theme": {
+    "title": "Tailwind CSS 4.x 多主题系统",
+    "subtitle": "体验最新的 Tailwind CSS 4.x 主题切换技术，支持 7 种精美主题，使用原生 CSS 变量和 @theme 指令，实现流畅的颜色过渡效果",
+    "colorSelection": "主题色彩选择",
+    "colorSelectionDesc": "选择你喜欢的界面主题，支持 {{count}} 种不同风格",
+    "themes": {
+      "light": {
+        "name": "亮色主题",
+        "description": "经典的亮色界面"
+      },
+      "dark": {
+        "name": "暗色主题",
+        "description": "护眼的暗色界面"
+      },
+      "blue": {
+        "name": "蓝色主题",
+        "description": "专业的蓝色调"
+      },
+      "green": {
+        "name": "绿色主题",
+        "description": "清新的绿色调"
+      },
+      "purple": {
+        "name": "紫色主题",
+        "description": "优雅的紫色调"
+      },
+      "orange": {
+        "name": "橙色主题",
+        "description": "温暖的橙色调"
+      },
+      "red": {
+        "name": "红色主题",
+        "description": "活力的红色调"
+      }
+    },
+    "stats": {
+      "title": "主题使用统计",
+      "currentTheme": "当前主题",
+      "switchCount": "切换次数",
+      "mostUsed": "最常用",
+      "times": "次"
+    },
+    "features": {
+      "title": "主题系统特性",
+      "tailwind4": "Tailwind CSS 4.x 原生支持",
+      "cssVariables": "CSS 变量动态切换",
+      "localStorage": "localStorage 持久化",
+      "smoothTransition": "流畅的过渡动画",
+      "responsive": "响应式设计适配",
+      "maintainable": "易于维护扩展"
+    }
+  },
+  "counter": {
+    "title": "MobX 计数器测试",
+    "subtitle": "测试 MobX 状态管理的响应式更新和数据持久化",
+    "currentValue": "当前计数值",
+    "increment": "增加",
+    "decrement": "减少",
+    "quickActions": "快速操作",
+    "reset": "重置",
+    "stateInfo": "MobX 状态信息",
+    "counterValue": "计数器值",
+    "currentTheme": "当前主题",
+    "themeSwitch": "主题切换",
+    "currentPage": "当前页面",
+    "availableThemes": "可用主题",
+    "dataPersistence": "数据持久化",
+    "enabled": "已启用",
+    "testGuide": "测试指南",
+    "basicTests": "基础功能测试",
+    "stateTests": "状态管理测试",
+    "testPoints": {
+      "clickButtons": "点击 +/- 按钮测试计数器响应",
+      "quickActions": "使用快速操作按钮测试批量更新",
+      "observeChanges": "观察数值变化的实时反馈",
+      "testReset": "重置按钮测试状态重置功能",
+      "switchPages": "切换到主题页面再返回，数据保持",
+      "refreshPage": "刷新浏览器页面，数据从 localStorage 恢复",
+      "switchTheme": "切换主题，计数器状态不受影响",
+      "reactiveUpdate": "所有操作都是响应式的，UI 立即更新"
+    }
+  },
+  "language": {
+    "switch": "切换语言",
+    "chinese": "中文",
+    "english": "English"
+  },
+  "debug": {
+    "title": "调试信息",
+    "currentTheme": "当前主题",
+    "themeClass": "主题类名",
+    "htmlClasses": "HTML类名",
+    "initialized": "是否已初始化",
+    "yes": "是",
+    "no": "否",
+    "checking": "检查中..."
+  },
+  "footer": {
+    "currentState": "当前状态",
+    "counter": "计数器",
+    "themeSwitch": "主题切换",
+    "times": "次",
+    "techStack": "Tailwind CSS 4.x + MobX + TypeScript"
+  }
+}

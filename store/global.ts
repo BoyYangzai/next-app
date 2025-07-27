@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 export type Theme = 'light' | 'dark' | 'blue' | 'green' | 'purple' | 'orange' | 'red';
+export type Language = 'zh' | 'en';
 
 export const THEMES = {
   light: {
@@ -54,9 +55,25 @@ export const THEMES = {
   }
 };
 
+export const LANGUAGES = {
+  zh: {
+    name: '中文',
+    nativeName: '中文',
+    flag: '🇨🇳'
+  },
+  en: {
+    name: 'English',
+    nativeName: 'English',
+    flag: '🇺🇸'
+  }
+};
+
 class Global {
   // 主题状态
   theme: Theme = 'light';
+
+  // 语言状态
+  language: Language = 'zh';
 
   // 计数器测试 MobX 状态管理
   counter = 0;
@@ -67,6 +84,9 @@ class Global {
   // 主题切换历史
   themeHistory: Theme[] = ['light'];
 
+  // 语言切换历史
+  languageHistory: Language[] = ['zh'];
+
   // 标记是否已经初始化（避免 hydration 错误）
   private isInitialized = false;
 
@@ -74,17 +94,52 @@ class Global {
     makeAutoObservable(this);
   }
 
-  // 初始化方法，在客户端组件挂载后调用
+  // 新的初始化方法 - 只从存储读取状态，不应用主题（主题已预加载）
+  initializeFromStorage = () => {
+    if (this.isInitialized || typeof window === 'undefined') return;
+
+    try {
+      // 从 localStorage 读取设置
+      const savedTheme = localStorage.getItem('theme') as Theme;
+      const savedLanguage = localStorage.getItem('language') as Language;
+      const savedCounter = localStorage.getItem('counter');
+
+      if (savedTheme && THEMES[savedTheme]) {
+        this.theme = savedTheme;
+      }
+
+      if (savedLanguage && LANGUAGES[savedLanguage]) {
+        this.language = savedLanguage;
+      }
+
+      if (savedCounter) {
+        this.counter = parseInt(savedCounter, 10) || 0;
+      }
+
+      // 不需要应用主题，因为已经通过预加载脚本应用了
+      this.isInitialized = true;
+    } catch (error) {
+      console.warn('Failed to initialize from localStorage:', error);
+      this.isInitialized = true;
+    }
+  };
+
+  // 原有的初始化方法，保持向后兼容
   initialize = () => {
     if (this.isInitialized || typeof window === 'undefined') return;
 
     try {
       // 从 localStorage 读取设置
       const savedTheme = localStorage.getItem('theme') as Theme;
+      const savedLanguage = localStorage.getItem('language') as Language;
       const savedCounter = localStorage.getItem('counter');
 
       if (savedTheme && THEMES[savedTheme]) {
         this.theme = savedTheme;
+      }
+
+      if (savedLanguage && LANGUAGES[savedLanguage]) {
+        this.language = savedLanguage;
       }
 
       if (savedCounter) {
@@ -95,8 +150,8 @@ class Global {
       this.applyTheme(this.theme);
       this.isInitialized = true;
     } catch (error) {
-      console.warn('Failed to initialize theme from localStorage:', error);
-      // 如果出错，使用默认主题
+      console.warn('Failed to initialize from localStorage:', error);
+      // 如果出错，使用默认设置
       this.applyTheme('light');
       this.isInitialized = true;
     }
@@ -152,9 +207,33 @@ class Global {
     }
   };
 
+  // 切换语言
+  setLanguage = (language: Language) => {
+    if (!LANGUAGES[language]) return;
+
+    console.log(`Switching language from ${this.language} to ${language}`);
+
+    this.language = language;
+    this.languageHistory.push(language);
+
+    // 保存到 localStorage
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('language', language);
+      } catch (error) {
+        console.warn('Failed to save language to localStorage:', error);
+      }
+    }
+  };
+
   // 获取当前主题配置
   get currentTheme() {
     return THEMES[this.theme];
+  }
+
+  // 获取当前语言配置
+  get currentLanguage() {
+    return LANGUAGES[this.language];
   }
 
   // 计数器操作
@@ -198,10 +277,13 @@ class Global {
   get stats() {
     return {
       currentTheme: this.currentTheme.name,
+      currentLanguage: this.currentLanguage.name,
       themeChanges: this.themeHistory.length - 1,
+      languageChanges: this.languageHistory.length - 1,
       counterValue: this.counter,
       currentPage: this.currentPage,
-      availableThemes: Object.keys(THEMES).length
+      availableThemes: Object.keys(THEMES).length,
+      availableLanguages: Object.keys(LANGUAGES).length
     };
   }
 
@@ -217,6 +299,21 @@ class Global {
       mostUsed: Object.entries(themeCount)
         .sort(([, a], [, b]) => b - a)[0]?.[0] as Theme || 'light',
       usage: themeCount
+    };
+  }
+
+  // 获取语言使用统计
+  get languageStats() {
+    const languageCount = this.languageHistory.reduce((acc, language) => {
+      acc[language] = (acc[language] || 0) + 1;
+      return acc;
+    }, {} as Record<Language, number>);
+
+    return {
+      totalSwitches: this.languageHistory.length - 1,
+      mostUsed: Object.entries(languageCount)
+        .sort(([, a], [, b]) => b - a)[0]?.[0] as Language || 'zh',
+      usage: languageCount
     };
   }
 }

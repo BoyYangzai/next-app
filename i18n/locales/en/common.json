@@ -1,0 +1,116 @@
+{
+  "app": {
+    "title": "Feature Testing Lab",
+    "subtitle": "Modern theme system based on Tailwind CSS 4.x & MobX state management demo"
+  },
+  "navigation": {
+    "themeTest": "Themes",
+    "themeTestDesc": "Multi-theme Switch",
+    "mobxTest": "MobX Test",
+    "mobxTestDesc": "State Management"
+  },
+  "theme": {
+    "title": "Tailwind CSS 4.x Multi-theme System",
+    "subtitle": "Experience the latest Tailwind CSS 4.x theme switching technology, supports 7 beautiful themes, uses native CSS variables and @theme directive for smooth color transitions",
+    "colorSelection": "Theme Color Selection",
+    "colorSelectionDesc": "Choose your favorite interface theme, supports {{count}} different styles",
+    "themes": {
+      "light": {
+        "name": "Light Theme",
+        "description": "Classic light interface"
+      },
+      "dark": {
+        "name": "Dark Theme",
+        "description": "Eye-friendly dark interface"
+      },
+      "blue": {
+        "name": "Blue Theme",
+        "description": "Professional blue tone"
+      },
+      "green": {
+        "name": "Green Theme",
+        "description": "Fresh green tone"
+      },
+      "purple": {
+        "name": "Purple Theme",
+        "description": "Elegant purple tone"
+      },
+      "orange": {
+        "name": "Orange Theme",
+        "description": "Warm orange tone"
+      },
+      "red": {
+        "name": "Red Theme",
+        "description": "Vibrant red tone"
+      }
+    },
+    "stats": {
+      "title": "Theme Usage Statistics",
+      "currentTheme": "Current Theme",
+      "switchCount": "Switch Count",
+      "mostUsed": "Most Used",
+      "times": "times"
+    },
+    "features": {
+      "title": "Theme System Features",
+      "tailwind4": "Tailwind CSS 4.x Native Support",
+      "cssVariables": "CSS Variables Dynamic Switching",
+      "localStorage": "localStorage Persistence",
+      "smoothTransition": "Smooth Transition Animation",
+      "responsive": "Responsive Design Adaptation",
+      "maintainable": "Easy to Maintain and Extend"
+    }
+  },
+  "counter": {
+    "title": "MobX Counter Test",
+    "subtitle": "Test MobX state management reactive updates and data persistence",
+    "currentValue": "Current Counter Value",
+    "increment": "Increment",
+    "decrement": "Decrement",
+    "quickActions": "Quick Actions",
+    "reset": "Reset",
+    "stateInfo": "MobX State Information",
+    "counterValue": "Counter Value",
+    "currentTheme": "Current Theme",
+    "themeSwitch": "Theme Switch",
+    "currentPage": "Current Page",
+    "availableThemes": "Available Themes",
+    "dataPersistence": "Data Persistence",
+    "enabled": "Enabled",
+    "testGuide": "Test Guide",
+    "basicTests": "Basic Function Tests",
+    "stateTests": "State Management Tests",
+    "testPoints": {
+      "clickButtons": "Click +/- buttons to test counter response",
+      "quickActions": "Use quick action buttons to test batch updates",
+      "observeChanges": "Observe real-time feedback of value changes",
+      "testReset": "Test reset button for state reset function",
+      "switchPages": "Switch to theme page and back, data persists",
+      "refreshPage": "Refresh browser page, data recovers from localStorage",
+      "switchTheme": "Switch theme, counter state unaffected",
+      "reactiveUpdate": "All operations are reactive, UI updates immediately"
+    }
+  },
+  "language": {
+    "switch": "Switch Language",
+    "chinese": "中文",
+    "english": "English"
+  },
+  "debug": {
+    "title": "Debug Information",
+    "currentTheme": "Current Theme",
+    "themeClass": "Theme Class",
+    "htmlClasses": "HTML Classes",
+    "initialized": "Initialized",
+    "yes": "Yes",
+    "no": "No",
+    "checking": "Checking..."
+  },
+  "footer": {
+    "currentState": "Current State",
+    "counter": "Counter",
+    "themeSwitch": "Theme Switch",
+    "times": "times",
+    "techStack": "Tailwind CSS 4.x + MobX + TypeScript"
+  }
+}
