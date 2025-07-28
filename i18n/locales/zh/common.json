@@ -3,6 +3,48 @@
     "title": "功能测试实验室",
     "subtitle": "基于 Tailwind CSS 4.x 的现代主题系统 & MobX 状态管理演示"
   },
+  "metadata": {
+    "site": {
+      "title": "功能测试实验室 - Feature Testing Lab",
+      "description": "基于 Next.js 15 + Tailwind CSS 4.x + MobX 的现代前端技术测试平台，专注于最新技术的实践与验证",
+      "keywords": [
+        "Next.js",
+        "Tailwind CSS",
+        "MobX",
+        "TypeScript",
+        "i18n",
+        "主题切换",
+        "状态管理",
+        "响应式"
+      ],
+      "author": "开发团队"
+    },
+    "pages": {
+      "home": {
+        "title": "主题测试 - 功能测试实验室",
+        "description": "体验 Tailwind CSS 4.x 的多主题切换功能，支持 7 种精美主题，零闪烁切换，完美的用户体验",
+        "keywords": [
+          "主题切换",
+          "Tailwind CSS 4.x",
+          "暗色模式",
+          "CSS 变量",
+          "响应式设计"
+        ]
+      },
+      "counter": {
+        "title": "MobX 状态管理测试 - 功能测试实验室",
+        "description": "通过多个独立组件验证 MobX 的跨组件响应式状态管理能力，包括计算属性、状态持久化和跨页面状态保持",
+        "keywords": [
+          "MobX",
+          "状态管理",
+          "响应式",
+          "计算属性",
+          "状态持久化",
+          "跨组件通信"
+        ]
+      }
+    }
+  },
   "navigation": {
     "themeTest": "主题",
     "themeTestDesc": "多主题切换",

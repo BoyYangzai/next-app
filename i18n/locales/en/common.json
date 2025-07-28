@@ -3,6 +3,48 @@
     "title": "Feature Testing Lab",
     "subtitle": "Modern theme system based on Tailwind CSS 4.x & MobX state management demo"
   },
+  "metadata": {
+    "site": {
+      "title": "Feature Testing Lab - Modern Frontend Technology",
+      "description": "A modern frontend technology testing platform based on Next.js 15 + Tailwind CSS 4.x + MobX, focusing on the practice and verification of the latest technologies",
+      "keywords": [
+        "Next.js",
+        "Tailwind CSS",
+        "MobX",
+        "TypeScript",
+        "i18n",
+        "Theme Switch",
+        "State Management",
+        "Responsive"
+      ],
+      "author": "Development Team"
+    },
+    "pages": {
+      "home": {
+        "title": "Theme Testing - Feature Testing Lab",
+        "description": "Experience Tailwind CSS 4.x multi-theme switching functionality with 7 beautiful themes, zero-flicker switching, and perfect user experience",
+        "keywords": [
+          "Theme Switch",
+          "Tailwind CSS 4.x",
+          "Dark Mode",
+          "CSS Variables",
+          "Responsive Design"
+        ]
+      },
+      "counter": {
+        "title": "MobX State Management Testing - Feature Testing Lab",
+        "description": "Verify MobX's cross-component reactive state management capabilities through multiple independent components, including computed properties, state persistence, and cross-page state retention",
+        "keywords": [
+          "MobX",
+          "State Management",
+          "Reactive",
+          "Computed Properties",
+          "State Persistence",
+          "Cross-Component Communication"
+        ]
+      }
+    }
+  },
   "navigation": {
     "themeTest": "Themes",
     "themeTestDesc": "Multi-theme Switch",
@@ -10,10 +52,10 @@
     "mobxTestDesc": "State Management"
   },
   "theme": {
-    "title": "Tailwind CSS 4.x Multi-theme System",
-    "subtitle": "Experience the latest Tailwind CSS 4.x theme switching technology, supports 7 beautiful themes, uses native CSS variables and @theme directive for smooth color transitions",
+    "title": "Tailwind CSS 4.x Multi-Theme System",
+    "subtitle": "Experience the latest Tailwind CSS 4.x theme switching technology with 7 beautiful themes, using native CSS variables and @theme directive for smooth color transitions",
     "colorSelection": "Theme Color Selection",
-    "colorSelectionDesc": "Choose your favorite interface theme, supports {{count}} different styles",
+    "colorSelectionDesc": "Choose your preferred interface theme, supporting {{count}} different styles",
     "themes": {
       "light": {
         "name": "Light Theme",
@@ -62,13 +104,50 @@
     }
   },
   "counter": {
-    "title": "MobX Counter Test",
-    "subtitle": "Test MobX state management reactive updates and data persistence",
-    "currentValue": "Current Counter Value",
-    "increment": "Increment",
-    "decrement": "Decrement",
+    "title": "MobX State Management Test",
+    "subtitle": "Verify MobX's cross-component reactive state management capabilities through multiple independent components",
+    "display": {
+      "title": "Counter Display",
+      "description": "Current counter value, automatically responds to state changes"
+    },
+    "controls": {
+      "title": "Counter Controls",
+      "increment": "Increment",
+      "decrement": "Decrement",
+      "reset": "Reset"
+    },
+    "history": {
+      "title": "Operation History",
+      "empty": "No operation history yet"
+    },
+    "stats": {
+      "title": "Real-time Statistics",
+      "totalOps": "Total Operations",
+      "maxValue": "Max Value",
+      "minValue": "Min Value",
+      "avgValue": "Average Value"
+    },
+    "crossPage": {
+      "title": "Cross-page State",
+      "currentPage": "Current Page",
+      "pageChanges": "Page Changes"
+    },
+    "mobx": {
+      "title": "MobX Features",
+      "reactive": "Reactive State Updates",
+      "computed": "Computed Properties Auto-calculation",
+      "persistent": "State Persistence Storage",
+      "crossComponent": "Cross-component State Sharing",
+      "testGuide": {
+        "title": "Test Guide",
+        "step1": "Click buttons to observe all components sync update",
+        "step2": "Switch pages to verify state persistence",
+        "step3": "Refresh page to confirm state recovery",
+        "step4": "Watch statistics data change in real-time"
+      }
+    },
+    "currentValue": "Current Count Value",
     "quickActions": "Quick Actions",
-    "reset": "Reset",
     "stateInfo": "MobX State Information",
     "counterValue": "Counter Value",
     "currentTheme": "Current Theme",
@@ -84,10 +163,10 @@
       "clickButtons": "Click +/- buttons to test counter response",
       "quickActions": "Use quick action buttons to test batch updates",
       "observeChanges": "Observe real-time feedback of value changes",
-      "testReset": "Test reset button for state reset function",
-      "switchPages": "Switch to theme page and back, data persists",
+      "testReset": "Test reset button for state reset functionality",
+      "switchPages": "Switch to theme page and return, data persists",
       "refreshPage": "Refresh browser page, data recovers from localStorage",
-      "switchTheme": "Switch theme, counter state unaffected",
+      "switchTheme": "Switch themes, counter state unaffected",
       "reactiveUpdate": "All operations are reactive, UI updates immediately"
     }
   },

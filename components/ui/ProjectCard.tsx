@@ -113,7 +113,7 @@ const ProjectCard: FC<ProjectCardProps> = observer(
                 onClick={() =>
                   onProgressUpdate(
                     project.id,
-                    Math.max(0, project.progress - 10)
+                    Math.max(0, project.progress - 10),
                   )
                 }
                 className="px-3 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
@@ -124,7 +124,7 @@ const ProjectCard: FC<ProjectCardProps> = observer(
                 onClick={() =>
                   onProgressUpdate(
                     project.id,
-                    Math.min(100, project.progress + 10)
+                    Math.min(100, project.progress + 10),
                   )
                 }
                 className="px-3 py-1 text-xs bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded hover:bg-primary-200 dark:hover:bg-primary-800 transition-colors"
@@ -136,7 +136,7 @@ const ProjectCard: FC<ProjectCardProps> = observer(
         </div>
       </motion.div>
     );
-  }
+  },
 );
 
 export default ProjectCard;

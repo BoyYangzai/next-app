@@ -4,21 +4,14 @@ import { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store";
 import { useTranslation } from "@/i18n/client";
-import { ThemeSelector } from "@/components/theme";
-import { Counter } from "@/components/counter";
+import Link from "next/link";
+import { useLang } from "@/i18n/i18n-context";
 import { Navigation, LanguageSwitcher } from "@/components/ui";
-import {
-  CounterDisplay,
-  CounterControls,
-  CounterHistory,
-  CounterStats,
-  CrossPageStateTest,
-  MobXFeaturesDemo,
-} from "@/components/counter";
 
 const HomePage: FC = observer(() => {
   const { global } = useStore();
   const { t } = useTranslation();
+  const lang = useLang();
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">
@@ -43,224 +36,253 @@ const HomePage: FC = observer(() => {
 
       {/* 主要内容区域 */}
       <main className="max-w-6xl mx-auto px-6 py-8">
-        {global.currentPage === "home" && (
-          <div className="space-y-10">
-            {/* 功能1: Tailwind 主题切换测试 */}
-            <section className="theme-card p-8 lg:p-12">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">
-                  🎨 {t("theme.title")}
-                </h2>
-                <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-                  {t("theme.subtitle")}
-                </p>
+        <div className="space-y-10">
+          {/* 欢迎区域 */}
+          <section className="text-center space-y-6">
+            <div className="space-y-4">
+              <h2 className="text-4xl font-bold text-foreground">
+                功能测试实验室
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                基于 Next.js 15 + Tailwind CSS 4.x + MobX 的现代前端技术测试平台
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span>Next.js 15</span>
               </div>
-
-              <ThemeSelector />
-            </section>
-
-            {/* 技术特性展示 */}
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="theme-card p-6 text-center group hover:scale-105 transition-transform duration-300">
-                <div className="text-4xl mb-4">⚡</div>
-                <h3 className="font-bold text-card-foreground mb-2">
-                  {t("theme.features.tailwind4")}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  基于 Rust 引擎的 Tailwind CSS 4.x，构建速度提升 10 倍
-                </p>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                <span>Tailwind CSS 4.x</span>
               </div>
-
-              <div className="theme-card p-6 text-center group hover:scale-105 transition-transform duration-300">
-                <div className="text-4xl mb-4">🎯</div>
-                <h3 className="font-bold text-card-foreground mb-2">
-                  CSS-First
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  无需 JavaScript 配置文件，直接在 CSS 中定义主题
-                </p>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                <span>MobX</span>
               </div>
-
-              <div className="theme-card p-6 text-center group hover:scale-105 transition-transform duration-300">
-                <div className="text-4xl mb-4">🔧</div>
-                <h3 className="font-bold text-card-foreground mb-2">
-                  {t("theme.features.maintainable")}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  统一的设计令牌管理，开发者友好的架构设计
-                </p>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                <span>TypeScript</span>
               </div>
-            </section>
-
-            {/* 实现对比 */}
-            <section className="theme-card p-8">
-              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-                📊 Tailwind CSS 版本对比
-              </h3>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="text-left py-3 px-4 font-semibold text-card-foreground">
-                        特性
-                      </th>
-                      <th className="text-center py-3 px-4 font-semibold text-muted-foreground">
-                        v3.x
-                      </th>
-                      <th className="text-center py-3 px-4 font-semibold text-primary">
-                        v4.x (新)
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-sm">
-                    <tr className="border-b border-border/50">
-                      <td className="py-3 px-4 text-card-foreground">
-                        配置方式
-                      </td>
-                      <td className="py-3 px-4 text-center text-muted-foreground">
-                        tailwind.config.js
-                      </td>
-                      <td className="py-3 px-4 text-center text-primary font-medium">
-                        @theme 指令
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border/50">
-                      <td className="py-3 px-4 text-card-foreground">
-                        主题切换
-                      </td>
-                      <td className="py-3 px-4 text-center text-muted-foreground">
-                        复杂设置
-                      </td>
-                      <td className="py-3 px-4 text-center text-primary font-medium">
-                        原生 CSS 变量
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border/50">
-                      <td className="py-3 px-4 text-card-foreground">
-                        透明度支持
-                      </td>
-                      <td className="py-3 px-4 text-center text-muted-foreground">
-                        需要特殊处理
-                      </td>
-                      <td className="py-3 px-4 text-center text-primary font-medium">
-                        自动支持
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4 text-card-foreground">
-                        构建性能
-                      </td>
-                      <td className="py-3 px-4 text-center text-muted-foreground">
-                        Node.js
-                      </td>
-                      <td className="py-3 px-4 text-center text-primary font-medium">
-                        Rust 引擎
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                <span>国际化 (i18n)</span>
               </div>
-            </section>
-          </div>
-        )}
+            </div>
+          </section>
 
-        {global.currentPage === "counter" && (
-          <div className="space-y-8">
-            {/* 功能2: MobX 跨组件状态管理测试 */}
-            <section className="space-y-8">
-              {/* 页面标题 */}
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-foreground mb-4">
-                  🔢 {t("counter.title")}
-                </h2>
-                <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-                  {t("counter.subtitle")}
-                </p>
-              </div>
-
-              {/* 主要计数器显示 - 独立组件 */}
-              <CounterDisplay />
-
-              {/* 控制面板和跨页面测试 */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <CounterControls />
-                <CrossPageStateTest />
-              </div>
-
-              {/* 统计和历史 */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <CounterStats />
-                <CounterHistory />
-              </div>
-
-              {/* MobX 特性说明 */}
-              <MobXFeaturesDemo />
-
-              {/* 测试说明 */}
-              <div className="theme-card p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-                  🧪 MobX 跨组件测试验证
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-card-foreground">
-                      ✅ 已验证的 MobX 特性:
-                    </h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        <span>多个组件使用 observer() 包裹</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        <span>计数器显示与控制完全分离</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        <span>状态变化自动同步到所有组件</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        <span>计算属性实时更新统计数据</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        <span>跨页面状态保持</span>
-                      </li>
-                    </ul>
+          {/* 功能卡片 */}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* 主题测试卡片 */}
+            <Link href={`/${lang}/theme`} className="group">
+              <div className="theme-card p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="text-5xl">🎨</div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-card-foreground group-hover:text-primary transition-colors">
+                        主题测试
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Tailwind CSS 4.x 主题切换
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-card-foreground">
-                      🔬 测试方法:
-                    </h4>
-                    <ol className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="font-medium text-primary">1.</span>
-                        <span>点击增加/减少按钮，观察所有组件同步更新</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-medium text-primary">2.</span>
-                        <span>切换到主题页面，再返回，状态依然保持</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-medium text-primary">3.</span>
-                        <span>刷新页面，状态从 localStorage 恢复</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-medium text-primary">4.</span>
-                        <span>查看历史记录自动增长</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-medium text-primary">5.</span>
-                        <span>观察统计数据实时计算</span>
-                      </li>
-                    </ol>
+
+                  <div className="space-y-3">
+                    <p className="text-sm text-muted-foreground">
+                      体验 Tailwind CSS 4.x 的多主题切换功能，支持 7
+                      种精美主题，零闪烁切换。
+                    </p>
+
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-card-foreground">
+                        主要特性:
+                      </h4>
+                      <ul className="text-xs text-muted-foreground space-y-1">
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>7 种内置主题 + 自定义主题</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>CSS-First 配置方式</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>无闪烁主题切换动画</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>完整的设计令牌系统</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">
+                      点击体验 →
+                    </span>
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                      <span className="text-primary text-sm">→</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </section>
-          </div>
-        )}
+            </Link>
+
+            {/* MobX 状态管理卡片 */}
+            <Link href={`/${lang}/counter`} className="group">
+              <div className="theme-card p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="text-5xl">🔢</div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-card-foreground group-hover:text-primary transition-colors">
+                        状态管理
+                      </h3>
+                      <p className="text-muted-foreground">
+                        MobX 跨组件状态管理
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <p className="text-sm text-muted-foreground">
+                      通过多个独立组件验证 MobX 的跨组件响应式状态管理能力。
+                    </p>
+
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-card-foreground">
+                        测试功能:
+                      </h4>
+                      <ul className="text-xs text-muted-foreground space-y-1">
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>跨组件状态同步</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>计算属性实时更新</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>状态持久化到本地存储</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          <span>跨页面状态保持</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">
+                      点击测试 →
+                    </span>
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                      <span className="text-primary text-sm">→</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </section>
+
+          {/* 技术架构说明 */}
+          <section className="theme-card p-8">
+            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+              🏗️ 技术架构特色
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center space-y-3">
+                <div className="text-3xl">⚡</div>
+                <h4 className="font-semibold text-card-foreground">
+                  Tailwind CSS 4.x
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  基于 Rust 引擎，构建速度提升 10 倍，支持 CSS-First 配置
+                </p>
+              </div>
+              <div className="text-center space-y-3">
+                <div className="text-3xl">🔄</div>
+                <h4 className="font-semibold text-card-foreground">
+                  MobX 状态管理
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  简单直观的响应式状态管理，自动依赖追踪，最小化重渲染
+                </p>
+              </div>
+              <div className="text-center space-y-3">
+                <div className="text-3xl">🌍</div>
+                <h4 className="font-semibold text-card-foreground">
+                  完整国际化
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  基于 i18next 的完整 i18n 方案，支持路径级语言切换
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* 项目特点 */}
+          <section className="theme-card p-8">
+            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+              ✨ 项目亮点
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-card-foreground">
+                  🎯 开发体验优化
+                </h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
+                    <span>TypeScript 完整类型安全</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
+                    <span>统一的代码规范和格式化</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
+                    <span>模块化组件架构设计</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
+                    <span>完整的开发工具链配置</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-card-foreground">
+                  🚀 性能与体验
+                </h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                    <span>Next.js 15 App Router 最新特性</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                    <span>无闪烁主题切换动画</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                    <span>响应式设计完美适配</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
+                    <span>状态持久化与恢复机制</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
 
       {/* 底部状态栏 - 展示全局状态同步 */}

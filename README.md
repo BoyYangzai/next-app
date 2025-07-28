@@ -258,6 +258,32 @@ pnpm add <package-name>
 - **响应式**：移动优先的设计原则
 - **性能**：最小化重渲染和布局抖动
 
+## 📊 SEO 优化配置
+
+本项目采用了完整的 SEO 最佳实践，支持多语言、SSG 静态生成、动态 metadata 等功能。
+
+**📖 完整 SEO 配置指南**：[SEO_GUIDE.md](docs/SEO_GUIDE.md)
+
+### SEO 特性
+
+- ✅ **SSG 静态生成** - 所有页面预渲染，SEO 友好
+- ✅ **动态 Metadata** - 基于 Next.js 15 Metadata API
+- ✅ **多语言 SEO** - 完整的 hreflang 和 canonical 配置
+- ✅ **结构化数据** - Open Graph、Twitter Card 优化
+- ✅ **搜索引擎优化** - 自动生成 sitemap.xml 和 robots.txt
+- ✅ **中央化配置** - 一次配置，全站生效
+
+### 配置文件
+
+```
+📁 SEO 配置架构
+├── types/seo.types.ts       # 类型定义
+├── config/
+│   ├── seo.config.ts        # 站点级配置
+│   └── pages.config.ts      # 页面级配置
+└── docs/SEO_GUIDE.md        # 使用指南
+```
+
 ## 🧪 测试功能
 
 ### 主题系统测试
@@ -277,6 +303,13 @@ pnpm add <package-name>
 1. 切换语言，观察文本变化
 2. 直接访问 `/en/` 路径
 3. 验证语言状态同步
+
+### SEO 测试
+
+1. 运行 `pnpm build` 生成 SSG 静态文件
+2. 检查 `.next/server/app/` 中的 HTML 文件 metadata
+3. 访问 `/sitemap.xml` 和 `/robots.txt` 验证自动生成
+4. 使用 Google PageSpeed Insights 测试 SEO 评分
 
 ## 🤝 贡献指南
 

@@ -66,7 +66,7 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = observer(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default LanguageSwitcher;

@@ -129,6 +129,12 @@ class Global {
     }
   };
 
+  // 切换主题（在亮色和暗色之间）
+  toggleTheme = () => {
+    const newTheme = this.theme === "light" ? "dark" : "light";
+    this.setTheme(newTheme);
+  };
+
   // 设置语言
   setLanguage = (language: Language) => {
     this.language = language;
@@ -161,6 +167,14 @@ class Global {
   reset = () => {
     this.counter = 0;
     this.addCounterHistory("重置", this.counter);
+    this.saveCounterState();
+  };
+
+  // 添加指定数值
+  addValue = (value: number) => {
+    this.counter += value;
+    const action = value > 0 ? `增加 ${value}` : `减少 ${Math.abs(value)}`;
+    this.addCounterHistory(action, this.counter);
     this.saveCounterState();
   };
 
@@ -286,6 +300,7 @@ class Global {
       themeChanges: this.themeStats.totalSwitches,
       languageChanges: this.languageStats.totalSwitches,
       pageNavigations: this.pageHistory.length,
+      availableThemes: Object.keys(THEMES).length,
     };
   }
 }
