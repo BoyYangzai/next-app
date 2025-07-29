@@ -63,7 +63,7 @@ const SeoTestPage: FC = () => {
         twitterSite: getMetaContent('meta[name="twitter:site"]'),
         canonical: getHref('link[rel="canonical"]'),
         alternateCount: document.querySelectorAll(
-          'link[rel="alternate"][hreflang]'
+          'link[rel="alternate"][hreflang]',
         ).length,
         robots: getMetaContent('meta[name="robots"]'),
       });

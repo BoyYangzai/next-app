@@ -177,7 +177,7 @@ const Navigation: FC<NavigationProps> = observer(
         </div>
       </nav>
     );
-  }
+  },
 );
 
 export default Navigation;

@@ -1,0 +1,151 @@
+name: PR Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-info:
+    name: PR Information
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: PR Info
+        run: |
+          echo "🔍 PR #${{ github.event.pull_request.number }} Checks"
+          echo "📝 Title: ${{ github.event.pull_request.title }}"
+          echo "👤 Author: ${{ github.event.pull_request.user.login }}"
+          echo "🌟 Base: ${{ github.event.pull_request.base.ref }}"
+          echo "🔗 Head: ${{ github.event.pull_request.head.ref }}"
+
+  security-check:
+    name: Security Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run audit
+        run: pnpm audit --audit-level high
+        continue-on-error: true
+
+      - name: Check for sensitive files
+        run: |
+          echo "🔍 Checking for sensitive files..."
+          if find . -name "*.env*" -not -path "./node_modules/*" -not -name ".env.example" | grep -q .; then
+            echo "⚠️ Warning: Found .env files"
+            find . -name "*.env*" -not -path "./node_modules/*" -not -name ".env.example"
+          else
+            echo "✅ No sensitive .env files found"
+          fi
+
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check changed files
+        run: |
+          echo "📁 Changed files in this PR:"
+          git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD
+
+      - name: Run lint on changed files
+        run: |
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACM origin/${{ github.event.pull_request.base.ref }}...HEAD | grep -E '\.(js|jsx|ts|tsx)$' || true)
+          if [ ! -z "$CHANGED_FILES" ]; then
+            echo "🔍 Linting changed files:"
+            echo "$CHANGED_FILES"
+            npx eslint $CHANGED_FILES
+          else
+            echo "ℹ️ No JS/TS files changed"
+          fi
+
+  performance-check:
+    name: Performance Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and analyze bundle
+        run: |
+          echo "📊 Building for bundle analysis..."
+          pnpm run build
+
+          echo "📦 Bundle size check:"
+          du -sh .next/ || echo "Could not measure bundle size"
+
+          if [ -d ".next/static" ]; then
+            echo "📋 Static assets:"
+            find .next/static -name "*.js" -exec du -sh {} \; | head -10
+          fi
+
+  pr-summary:
+    name: PR Summary
+    runs-on: ubuntu-latest
+    needs: [pr-info, security-check, code-quality, performance-check]
+    if: always()
+
+    steps:
+      - name: Generate Summary
+        run: |
+          echo "## 📋 PR Check Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 Checks Completed:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ PR Information" >> $GITHUB_STEP_SUMMARY
+          echo "- ${{ needs.security-check.result == 'success' && '✅' || '❌' }} Security Check" >> $GITHUB_STEP_SUMMARY
+          echo "- ${{ needs.code-quality.result == 'success' && '✅' || '❌' }} Code Quality" >> $GITHUB_STEP_SUMMARY
+          echo "- ${{ needs.performance-check.result == 'success' && '✅' || '❌' }} Performance Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.security-check.result }}" == "success" && "${{ needs.code-quality.result }}" == "success" && "${{ needs.performance-check.result }}" == "success" ]]; then
+            echo "### 🎉 All checks passed! This PR is ready for review." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ⚠️ Some checks failed. Please review the issues above." >> $GITHUB_STEP_SUMMARY
+          fi
