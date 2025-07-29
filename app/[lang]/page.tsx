@@ -28,7 +28,7 @@ const HomePage: FC = observer(() => {
                   {t("app.title")}
                 </h1>
                 <p className="text-xs lg:text-sm text-muted-foreground hidden lg:block">
-                  现代前端技术栈演示
+                  {t("app.subtitle")}
                 </p>
               </div>
             </div>
@@ -343,7 +343,7 @@ const HomePage: FC = observer(() => {
                 <span>
                   {t("footer.currentState")}:{" "}
                   <strong className="text-card-foreground">
-                    {global.stats.currentTheme}
+                    {t(global.stats.currentTheme)}
                   </strong>
                 </span>
               </div>

@@ -23,5 +23,28 @@
     "canonicalUrls": "规范化 URL",
     "robotsOptimization": "Robots 优化",
     "sitemapGeneration": "站点地图生成"
-  }
+  },
+  "tools": {
+    "pageSpeedInsights": "Google 性能测试",
+    "htmlValidator": "W3C 标记验证",
+    "facebookDebugger": "Open Graph 测试",
+    "twitterCardValidator": "Twitter 卡片验证",
+    "richResultsTest": "Google 富媒体测试",
+    "sitemapXml": "站点地图",
+    "robotsTxt": "爬虫指令"
+  },
+  "configuration": {
+    "siteConfig": "站点配置",
+    "pageConfig": "页面配置",
+    "completeGuide": "完整指南"
+  },
+  "meta": {
+    "title": "标题",
+    "description": "描述",
+    "keywords": "关键词",
+    "canonicalUrl": "规范链接",
+    "languageAlternates": "语言替代",
+    "robots": "爬虫指令"
+  },
+  "found": "找到"
 }

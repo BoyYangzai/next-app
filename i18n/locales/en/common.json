@@ -46,12 +46,21 @@
     }
   },
   "navigation": {
+    "home": "Overview",
+    "homeDesc": "Project Features Overview",
+    "homeShort": "Home",
     "themeTest": "Themes",
     "themeTestDesc": "Multi-theme Switch",
+    "themeShort": "Theme",
     "mobxTest": "MobX Test",
     "mobxTestDesc": "State Management",
+    "mobxShort": "MobX",
     "seoTest": "SEO Test",
-    "seoTestDesc": "SEO Validation"
+    "seoTestDesc": "SEO Validation",
+    "seoShort": "SEO",
+    "errorBoundary": "Error Boundary",
+    "errorBoundaryDesc": "ErrorBoundary Error Handling Test",
+    "errorBoundaryShort": "Error"
   },
   "seo": {
     "title": "SEO Testing",
@@ -82,5 +91,26 @@
     "themeSwitch": "Theme Switch",
     "times": "times",
     "techStack": "Tailwind CSS 4.x + MobX + TypeScript"
+  },
+  "stats": {
+    "vsLastMonth": "vs last month"
+  },
+  "project": {
+    "progress": "Progress",
+    "status": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "planning": "Planning",
+      "unknown": "Unknown"
+    }
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "blue": "Blue",
+    "green": "Green",
+    "purple": "Purple",
+    "orange": "Orange",
+    "red": "Red"
   }
 }

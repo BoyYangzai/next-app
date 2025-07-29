@@ -42,6 +42,9 @@
     }
   },
   "currentValue": "Current Count Value",
+  "times": "times",
+  "mobxReactive": "MobX Reactive",
+  "themeSync": "Theme Sync",
   "quickActions": "Quick Actions",
   "stateInfo": "MobX State Information",
   "counterValue": "Counter Value",
@@ -63,5 +66,12 @@
     "refreshPage": "Refresh browser page, data recovers from localStorage",
     "switchTheme": "Switch themes, counter state unaffected",
     "reactiveUpdate": "All operations are reactive, UI updates immediately"
+  },
+  "actions": {
+    "increment": "Increment",
+    "decrement": "Decrement",
+    "reset": "Reset",
+    "addValue": "Add {{value}}",
+    "subtractValue": "Subtract {{value}}"
   }
 }

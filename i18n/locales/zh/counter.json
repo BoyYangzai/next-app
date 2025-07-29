@@ -42,6 +42,9 @@
     }
   },
   "currentValue": "当前计数值",
+  "times": "次",
+  "mobxReactive": "MobX 响应式",
+  "themeSync": "主题同步",
   "quickActions": "快速操作",
   "stateInfo": "MobX 状态信息",
   "counterValue": "计数器值",
@@ -63,5 +66,12 @@
     "refreshPage": "刷新浏览器页面，数据从 localStorage 恢复",
     "switchTheme": "切换主题，计数器状态不受影响",
     "reactiveUpdate": "所有操作都是响应式的，UI 立即更新"
+  },
+  "actions": {
+    "increment": "增加",
+    "decrement": "减少",
+    "reset": "重置",
+    "addValue": "增加 {{value}}",
+    "subtractValue": "减少 {{value}}"
   }
 }

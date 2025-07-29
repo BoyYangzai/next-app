@@ -142,21 +142,21 @@ const SeoTestPage: FC = () => {
               </h3>
               <div className="space-y-3 text-sm">
                 <div>
-                  <strong>Title:</strong>
+                  <strong>{t("meta.title")}:</strong>
                   <div className="text-muted-foreground break-all">
                     {metaData.title ||
                       (mounted ? "N/A" : <SkeletonText width={200} />)}
                   </div>
                 </div>
                 <div>
-                  <strong>Description:</strong>
+                  <strong>{t("meta.description")}:</strong>
                   <div className="text-muted-foreground">
                     {metaData.description ||
                       (mounted ? "N/A" : <SkeletonText width={300} />)}
                   </div>
                 </div>
                 <div>
-                  <strong>Keywords:</strong>
+                  <strong>{t("meta.keywords")}:</strong>
                   <div className="text-muted-foreground">
                     {metaData.keywords ||
                       (mounted ? "N/A" : <SkeletonText width={250} />)}
@@ -228,28 +228,28 @@ const SeoTestPage: FC = () => {
             {/* 结构化数据测试 */}
             <div className="p-6 border rounded-lg bg-card">
               <h3 className="text-xl font-semibold mb-4 flex items-center">
-                🔗 {t("seo.structuredData")}
+                🔗 {t("structuredData")}
               </h3>
               <div className="space-y-3 text-sm">
                 <div>
-                  <strong>Canonical URL:</strong>
+                  <strong>{t("meta.canonicalUrl")}:</strong>
                   <div className="text-muted-foreground break-all">
                     {metaData.canonical ||
                       (mounted ? "N/A" : <SkeletonText width={280} />)}
                   </div>
                 </div>
                 <div>
-                  <strong>Language Alternates:</strong>
+                  <strong>{t("meta.languageAlternates")}:</strong>
                   <div className="text-muted-foreground">
                     {mounted ? (
-                      `${metaData.alternateCount} found`
+                      `${metaData.alternateCount} ${t("found")}`
                     ) : (
                       <SkeletonText width={100} />
                     )}
                   </div>
                 </div>
                 <div>
-                  <strong>Robots:</strong>
+                  <strong>{t("meta.robots")}:</strong>
                   <div className="text-muted-foreground">
                     {metaData.robots ||
                       (mounted ? "N/A" : <SkeletonText width={180} />)}
@@ -262,7 +262,7 @@ const SeoTestPage: FC = () => {
           {/* SEO 工具链接 */}
           <div className="p-6 border rounded-lg bg-card">
             <h3 className="text-xl font-semibold mb-4 flex items-center">
-              🛠️ {t("seo.tools")}
+              🛠️ {t("tools")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <a
@@ -278,7 +278,7 @@ const SeoTestPage: FC = () => {
               >
                 <div className="font-medium">PageSpeed Insights</div>
                 <div className="text-sm text-muted-foreground">
-                  Google 性能测试
+                  {t("tools.pageSpeedInsights")}
                 </div>
               </a>
 
@@ -295,7 +295,7 @@ const SeoTestPage: FC = () => {
               >
                 <div className="font-medium">HTML Validator</div>
                 <div className="text-sm text-muted-foreground">
-                  W3C 标记验证
+                  {t("tools.htmlValidator")}
                 </div>
               </a>
 
@@ -312,7 +312,7 @@ const SeoTestPage: FC = () => {
               >
                 <div className="font-medium">Facebook Debugger</div>
                 <div className="text-sm text-muted-foreground">
-                  Open Graph 测试
+                  {t("tools.facebookDebugger")}
                 </div>
               </a>
 
@@ -324,7 +324,7 @@ const SeoTestPage: FC = () => {
               >
                 <div className="font-medium">Twitter Card Validator</div>
                 <div className="text-sm text-muted-foreground">
-                  Twitter 卡片验证
+                  {t("tools.twitterCardValidator")}
                 </div>
               </a>
 
@@ -341,7 +341,7 @@ const SeoTestPage: FC = () => {
               >
                 <div className="font-medium">Rich Results Test</div>
                 <div className="text-sm text-muted-foreground">
-                  Google 富媒体测试
+                  {t("tools.richResultsTest")}
                 </div>
               </a>
 
@@ -352,7 +352,9 @@ const SeoTestPage: FC = () => {
                 className="p-4 border rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="font-medium">Sitemap.xml</div>
-                <div className="text-sm text-muted-foreground">站点地图</div>
+                <div className="text-sm text-muted-foreground">
+                  {t("tools.sitemapXml")}
+                </div>
               </a>
 
               <a
@@ -362,7 +364,9 @@ const SeoTestPage: FC = () => {
                 className="p-4 border rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="font-medium">Robots.txt</div>
-                <div className="text-sm text-muted-foreground">爬虫指令</div>
+                <div className="text-sm text-muted-foreground">
+                  {t("tools.robotsTxt")}
+                </div>
               </a>
             </div>
           </div>
@@ -370,23 +374,23 @@ const SeoTestPage: FC = () => {
           {/* 配置说明 */}
           <div className="p-6 border rounded-lg bg-card">
             <h3 className="text-xl font-semibold mb-4 flex items-center">
-              📖 {t("seo.configuration")}
+              📖 {t("configuration")}
             </h3>
             <div className="space-y-4 text-sm">
               <div>
-                <strong>📊 站点配置：</strong>
+                <strong>📊 {t("configuration.siteConfig")}：</strong>
                 <code className="ml-2 px-2 py-1 bg-muted rounded">
                   config/seo.config.ts
                 </code>
               </div>
               <div>
-                <strong>📄 页面配置：</strong>
+                <strong>📄 {t("configuration.pageConfig")}：</strong>
                 <code className="ml-2 px-2 py-1 bg-muted rounded">
                   config/pages.config.ts
                 </code>
               </div>
               <div>
-                <strong>📚 完整指南：</strong>
+                <strong>📚 {t("configuration.completeGuide")}：</strong>
                 <a
                   href="https://github.com/BoyYangzai/next-app/blob/master/docs/SEO_GUIDE.md"
                   target="_blank"

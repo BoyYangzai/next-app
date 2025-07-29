@@ -1,6 +1,7 @@
 {
   "title": "Tailwind CSS 4.x Multi-Theme System",
   "subtitle": "Experience the latest Tailwind CSS 4.x theme switching technology with 7 beautiful themes, using native CSS variables and @theme directive for smooth color transitions",
+  "headerSubtitle": "Tailwind CSS 4.x Theme System",
   "colorSelection": "Theme Color Selection",
   "colorSelectionDesc": "Choose your preferred interface theme, supporting {{count}} different styles",
   "themes": {
@@ -38,7 +39,9 @@
     "currentTheme": "Current Theme",
     "switchCount": "Switch Count",
     "mostUsed": "Most Used",
-    "times": "times"
+    "times": "times",
+    "availableThemes": "Available Themes",
+    "currentVersion": "Current Version"
   },
   "features": {
     "title": "Theme System Features",
@@ -47,6 +50,35 @@
     "localStorage": "localStorage Persistence",
     "smoothTransition": "Smooth Transition Animation",
     "responsive": "Responsive Design Adaptation",
-    "maintainable": "Easy to Maintain and Extend"
+    "maintainable": "Easy to Maintain and Extend",
+    "description1": "Based on Tailwind CSS 4.x CSS-First configuration, supporting dynamic theme switching",
+    "description2": "Using native CSS variables with smooth color transition animations",
+    "description3": "Theme selection automatically saved to local storage, restored after page refresh",
+    "description4": "All color changes have smooth transition effects, enhancing user experience",
+    "description5": "Fully responsive design with perfect display on all devices",
+    "description6": "Easy to maintain and extend, supporting custom theme color additions",
+    "optimizedFeatures": "next-themes optimized",
+    "zeroFlicker": "Zero flicker switching",
+    "autoPersist": "Auto persistence",
+    "ssrCompatible": "SSR compatible"
+  },
+  "guide": {
+    "title": "Usage Guide",
+    "howToSwitch": "How to switch themes:",
+    "step1": "Click the theme color selector above",
+    "step2": "Watch the smooth transition of page colors",
+    "step3": "Theme selection is automatically saved",
+    "step4": "Theme settings remain unchanged after page refresh",
+    "techFeatures": "Technical Features:",
+    "feature1": "Professional implementation based on next-themes",
+    "feature2": "Zero flicker theme switching",
+    "feature3": "Perfect SSR compatibility",
+    "feature4": "Support for custom theme extensions"
+  },
+  "loading": {
+    "title": "Loading Theme Selector...",
+    "description": "Initializing theme system",
+    "loadingText": "Loading...",
+    "pleaseWait": "Please wait"
   }
 }

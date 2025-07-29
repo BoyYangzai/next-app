@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "@/i18n/client";
 import {
   Navigation,
   LanguageSwitcher,
@@ -11,6 +12,7 @@ import {
 import ErrorBoundary from "@/components/ErrorBoundary";
 
 const ErrorBoundaryPage: FC = observer(() => {
+  const { t } = useTranslation("error");
   return (
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">
       {/* 顶部导航栏 */}
@@ -22,10 +24,10 @@ const ErrorBoundaryPage: FC = observer(() => {
               <div className="text-2xl lg:text-3xl">🚨</div>
               <div className="hidden sm:block">
                 <h1 className="text-lg lg:text-xl font-bold text-foreground">
-                  错误边界测试
+                  {t("page.headerTitle")}
                 </h1>
                 <p className="text-xs lg:text-sm text-muted-foreground hidden lg:block">
-                  ErrorBoundary 错误处理演示
+                  {t("page.headerSubtitle")}
                 </p>
               </div>
             </div>
@@ -52,18 +54,17 @@ const ErrorBoundaryPage: FC = observer(() => {
           {/* 页面标题和描述 */}
           <section className="text-center space-y-4">
             <h2 className="text-3xl font-bold text-foreground">
-              ErrorBoundary 错误边界测试
+              {t("page.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              演示 React ErrorBoundary
-              如何优雅地捕获和处理组件错误，提供用户友好的错误界面
+              {t("page.subtitle")}
             </p>
           </section>
 
           {/* 基本错误边界演示 */}
           <section className="space-y-6">
             <h3 className="text-2xl font-semibold text-foreground">
-              🔥 基本错误捕获
+              {t("page.basicErrorCapture")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <ErrorBoundary>
@@ -72,26 +73,26 @@ const ErrorBoundaryPage: FC = observer(() => {
 
               <div className="theme-card p-6">
                 <h4 className="text-lg font-semibold text-card-foreground mb-4">
-                  📝 功能说明
+                  {t("page.functionDescription")}
                 </h4>
                 <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>ErrorBoundary 是 React 16 引入的错误处理机制：</p>
+                  <p>{t("page.description.intro")}</p>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                      <span>捕获子组件树中的 JavaScript 错误</span>
+                      <span>{t("page.description.captureErrors")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                      <span>记录错误信息用于调试</span>
+                      <span>{t("page.description.logErrors")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                      <span>显示备用 UI 而不是崩溃整个应用</span>
+                      <span>{t("page.description.fallbackUI")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                      <span>提供错误重试机制</span>
+                      <span>{t("page.description.retryMechanism")}</span>
                     </li>
                   </ul>
                 </div>
@@ -102,36 +103,42 @@ const ErrorBoundaryPage: FC = observer(() => {
           {/* 嵌套错误边界演示 */}
           <section className="space-y-6">
             <h3 className="text-2xl font-semibold text-foreground">
-              🏗️ 嵌套错误边界
+              {t("page.nestedErrorBoundary")}
             </h3>
             <div className="space-y-4">
               <p className="text-muted-foreground">
-                演示嵌套的 ErrorBoundary，展示错误隔离能力：
+                {t("page.description.nestedDemo")}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <ErrorBoundary>
                   <div className="theme-card p-4 min-h-[200px]">
-                    <h4 className="font-semibold mb-3 text-center">区域 A</h4>
-                    <SimpleErrorTrigger areaName="区域 A" />
+                    <h4 className="font-semibold mb-3 text-center">
+                      {t("page.areaA")}
+                    </h4>
+                    <SimpleErrorTrigger areaName={t("page.areaA")} />
                   </div>
                 </ErrorBoundary>
 
                 <ErrorBoundary>
                   <div className="theme-card p-4 min-h-[200px]">
-                    <h4 className="font-semibold mb-3 text-center">区域 B</h4>
-                    <SimpleErrorTrigger areaName="区域 B" />
+                    <h4 className="font-semibold mb-3 text-center">
+                      {t("page.areaB")}
+                    </h4>
+                    <SimpleErrorTrigger areaName={t("page.areaB")} />
                   </div>
                 </ErrorBoundary>
 
                 <ErrorBoundary>
                   <div className="theme-card p-4 min-h-[200px]">
-                    <h4 className="font-semibold mb-3 text-center">区域 C</h4>
-                    <SimpleErrorTrigger areaName="区域 C" />
+                    <h4 className="font-semibold mb-3 text-center">
+                      {t("page.areaC")}
+                    </h4>
+                    <SimpleErrorTrigger areaName={t("page.areaC")} />
                   </div>
                 </ErrorBoundary>
               </div>
               <p className="text-sm text-muted-foreground">
-                ⭐ 触发任意区域的错误，其他区域不受影响
+                {t("page.description.isolatedError")}
               </p>
             </div>
           </section>
@@ -139,29 +146,29 @@ const ErrorBoundaryPage: FC = observer(() => {
           {/* 最佳实践说明 */}
           <section className="theme-card p-6">
             <h3 className="text-xl font-semibold text-card-foreground mb-4">
-              💡 ErrorBoundary 最佳实践
+              {t("page.bestPractices")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-medium text-card-foreground mb-3">
-                  ✅ 适用场景
+                  {t("page.applicableScenarios")}
                 </h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• 第三方组件包裹</li>
-                  <li>• 复杂功能模块隔离</li>
-                  <li>• 关键业务流程保护</li>
-                  <li>• 生产环境错误降级</li>
+                  <li>{t("page.scenarios.thirdParty")}</li>
+                  <li>{t("page.scenarios.complexModules")}</li>
+                  <li>{t("page.scenarios.businessProcess")}</li>
+                  <li>{t("page.scenarios.productionDegradation")}</li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-medium text-card-foreground mb-3">
-                  ❌ 无法捕获的错误
+                  {t("page.uncaughtErrors")}
                 </h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• 事件处理器中的错误</li>
-                  <li>• 异步代码 (setTimeout, Promise)</li>
-                  <li>• SSR 渲染期间的错误</li>
-                  <li>• ErrorBoundary 自身的错误</li>
+                  <li>{t("page.uncaught.eventHandlers")}</li>
+                  <li>{t("page.uncaught.asyncCode")}</li>
+                  <li>{t("page.uncaught.ssrErrors")}</li>
+                  <li>{t("page.uncaught.boundaryErrors")}</li>
                 </ul>
               </div>
             </div>

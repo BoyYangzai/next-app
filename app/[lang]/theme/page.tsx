@@ -1,15 +1,34 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store";
 import { useTranslation } from "@/i18n/client";
+import { useTheme } from "next-themes";
 import { ThemeSelector } from "@/components/theme";
 import { Navigation, LanguageSwitcher } from "@/components/ui";
 
 const ThemePage: FC = observer(() => {
   const { global } = useStore();
   const { t } = useTranslation("theme");
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // 确保组件在客户端挂载后才渲染主题相关内容
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 主题配置（与ThemeSelector保持一致）
+  const THEME_CONFIG = {
+    light: { name: "themes.light.name" },
+    dark: { name: "themes.dark.name" },
+    blue: { name: "themes.blue.name" },
+    green: { name: "themes.green.name" },
+    purple: { name: "themes.purple.name" },
+    orange: { name: "themes.orange.name" },
+    red: { name: "themes.red.name" },
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">
@@ -22,10 +41,10 @@ const ThemePage: FC = observer(() => {
               <div className="text-2xl lg:text-3xl">🎨</div>
               <div className="hidden sm:block">
                 <h1 className="text-lg lg:text-xl font-bold text-foreground">
-                  {t("theme.title")}
+                  {t("title")}
                 </h1>
                 <p className="text-xs lg:text-sm text-muted-foreground hidden lg:block">
-                  Tailwind CSS 4.x 主题系统
+                  {t("headerSubtitle")}
                 </p>
               </div>
             </div>
@@ -53,10 +72,10 @@ const ThemePage: FC = observer(() => {
           <section className="theme-card p-8 lg:p-12">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                🎨 {t("theme.title")}
+                🎨 {t("title")}
               </h2>
               <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-                {t("theme.subtitle")}
+                {t("subtitle")}
               </p>
             </div>
 
@@ -66,15 +85,19 @@ const ThemePage: FC = observer(() => {
           {/* 主题统计 */}
           <section className="theme-card p-8">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              📊 {t("theme.stats.title")}
+              📊 {t("stats.title")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-4 rounded-lg bg-muted/30">
                 <div className="text-3xl font-bold text-primary mb-1">
-                  {global.stats.currentTheme}
+                  {mounted &&
+                  theme &&
+                  THEME_CONFIG[theme as keyof typeof THEME_CONFIG]
+                    ? t(THEME_CONFIG[theme as keyof typeof THEME_CONFIG].name)
+                    : t("loading.loadingText")}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {t("theme.stats.currentTheme")}
+                  {t("stats.currentTheme")}
                 </p>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted/30">
@@ -82,7 +105,7 @@ const ThemePage: FC = observer(() => {
                   {global.stats.themeChanges}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {t("theme.stats.switchCount")}
+                  {t("stats.switchCount")}
                 </p>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted/30">
@@ -90,15 +113,13 @@ const ThemePage: FC = observer(() => {
                   {global.stats.availableThemes}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {t("features.title")}
+                  {t("stats.availableThemes")}
                 </p>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted/30">
-                <div className="text-3xl font-bold text-ring mb-1">
-                  {global.stats.currentTheme}
-                </div>
+                <div className="text-3xl font-bold text-ring mb-1">4.x</div>
                 <p className="text-sm text-muted-foreground">
-                  {t("stats.currentTheme")}
+                  {t("stats.currentVersion")}
                 </p>
               </div>
             </div>
@@ -107,61 +128,61 @@ const ThemePage: FC = observer(() => {
           {/* 主题特性说明 */}
           <section className="theme-card p-8">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              ✨ {t("theme.features.title")}
+              ✨ {t("features.title")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="text-center space-y-3">
                 <div className="text-3xl">⚡</div>
                 <h4 className="font-semibold text-card-foreground">
-                  {t("theme.features.tailwind4")}
+                  {t("features.tailwind4")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  基于 Tailwind CSS 4.x 的 CSS-First 配置，支持动态主题切换
+                  {t("features.description1")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">🎨</div>
                 <h4 className="font-semibold text-card-foreground">
-                  {t("theme.features.cssVariables")}
+                  {t("features.cssVariables")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  使用原生 CSS 变量，支持平滑的颜色过渡动画
+                  {t("features.description2")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">💾</div>
                 <h4 className="font-semibold text-card-foreground">
-                  {t("theme.features.localStorage")}
+                  {t("features.localStorage")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  主题选择自动保存到本地存储，页面刷新后恢复
+                  {t("features.description3")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">🔄</div>
                 <h4 className="font-semibold text-card-foreground">
-                  {t("theme.features.smoothTransition")}
+                  {t("features.smoothTransition")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  所有颜色变化都有平滑的过渡效果，提升用户体验
+                  {t("features.description4")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">📱</div>
                 <h4 className="font-semibold text-card-foreground">
-                  {t("theme.features.responsive")}
+                  {t("features.responsive")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  完全响应式设计，在所有设备上都有完美的显示效果
+                  {t("features.description5")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">🛠️</div>
                 <h4 className="font-semibold text-card-foreground">
-                  {t("theme.features.maintainable")}
+                  {t("features.maintainable")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  易于维护和扩展，支持添加自定义主题色彩
+                  {t("features.description6")}
                 </p>
               </div>
             </div>
@@ -170,53 +191,53 @@ const ThemePage: FC = observer(() => {
           {/* 使用说明 */}
           <section className="theme-card p-8">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              📖 使用指南
+              📖 {t("guide.title")}
             </h3>
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-card-foreground">
-                    🎯 如何切换主题：
+                    🎯 {t("guide.howToSwitch")}
                   </h4>
                   <ol className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex gap-2">
                       <span className="font-medium text-primary">1.</span>
-                      <span>点击上方的主题色彩选择器</span>
+                      <span>{t("guide.step1")}</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-medium text-primary">2.</span>
-                      <span>观察页面颜色的平滑过渡变化</span>
+                      <span>{t("guide.step2")}</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-medium text-primary">3.</span>
-                      <span>主题选择会自动保存</span>
+                      <span>{t("guide.step3")}</span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-medium text-primary">4.</span>
-                      <span>刷新页面后主题设置保持不变</span>
+                      <span>{t("guide.step4")}</span>
                     </li>
                   </ol>
                 </div>
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-card-foreground">
-                    ⚡ 技术特点：
+                    ⚡ {t("guide.techFeatures")}
                   </h4>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      <span>基于 next-themes 的专业实现</span>
+                      <span>{t("guide.feature1")}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      <span>零闪烁主题切换</span>
+                      <span>{t("guide.feature2")}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      <span>完美的 SSR 兼容性</span>
+                      <span>{t("guide.feature3")}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      <span>支持自定义主题扩展</span>
+                      <span>{t("guide.feature4")}</span>
                     </li>
                   </ul>
                 </div>

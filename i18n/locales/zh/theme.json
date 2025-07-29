@@ -1,6 +1,7 @@
 {
   "title": "Tailwind CSS 4.x 多主题系统",
   "subtitle": "体验最新的 Tailwind CSS 4.x 主题切换技术，支持 7 种精美主题，使用原生 CSS 变量和 @theme 指令，实现流畅的颜色过渡效果",
+  "headerSubtitle": "Tailwind CSS 4.x 主题系统",
   "colorSelection": "主题色彩选择",
   "colorSelectionDesc": "选择你喜欢的界面主题，支持 {{count}} 种不同风格",
   "themes": {
@@ -38,7 +39,9 @@
     "currentTheme": "当前主题",
     "switchCount": "切换次数",
     "mostUsed": "最常用",
-    "times": "次"
+    "times": "次",
+    "availableThemes": "可用主题",
+    "currentVersion": "当前版本"
   },
   "features": {
     "title": "主题系统特性",
@@ -47,6 +50,35 @@
     "localStorage": "localStorage 持久化",
     "smoothTransition": "流畅的过渡动画",
     "responsive": "响应式设计适配",
-    "maintainable": "易于维护扩展"
+    "maintainable": "易于维护扩展",
+    "description1": "基于 Tailwind CSS 4.x 的 CSS-First 配置，支持动态主题切换",
+    "description2": "使用原生 CSS 变量，支持平滑的颜色过渡动画",
+    "description3": "主题选择自动保存到本地存储，页面刷新后恢复",
+    "description4": "所有颜色变化都有平滑的过渡效果，提升用户体验",
+    "description5": "完全响应式设计，在所有设备上都有完美的显示效果",
+    "description6": "易于维护和扩展，支持添加自定义主题色彩",
+    "optimizedFeatures": "next-themes 优化",
+    "zeroFlicker": "零闪烁切换",
+    "autoPersist": "自动持久化",
+    "ssrCompatible": "SSR 兼容"
+  },
+  "guide": {
+    "title": "使用指南",
+    "howToSwitch": "如何切换主题：",
+    "step1": "点击上方的主题色彩选择器",
+    "step2": "观察页面颜色的平滑过渡变化",
+    "step3": "主题选择会自动保存",
+    "step4": "刷新页面后主题设置保持不变",
+    "techFeatures": "技术特点：",
+    "feature1": "基于 next-themes 的专业实现",
+    "feature2": "零闪烁主题切换",
+    "feature3": "完美的 SSR 兼容性",
+    "feature4": "支持自定义主题扩展"
+  },
+  "loading": {
+    "title": "加载主题选择器...",
+    "description": "正在初始化主题系统",
+    "loadingText": "加载中...",
+    "pleaseWait": "请稍候"
   }
 }

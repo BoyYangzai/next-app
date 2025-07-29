@@ -29,10 +29,10 @@ const CounterPage: FC = observer(() => {
               <div className="text-2xl lg:text-3xl">🔢</div>
               <div className="hidden sm:block">
                 <h1 className="text-lg lg:text-xl font-bold text-foreground">
-                  {t("counter.title")}
+                  {t("title")}
                 </h1>
                 <p className="text-xs lg:text-sm text-muted-foreground hidden lg:block">
-                  MobX 响应式状态管理演示
+                  {t("subtitle")}
                 </p>
               </div>
             </div>
@@ -61,10 +61,10 @@ const CounterPage: FC = observer(() => {
             {/* 页面标题 */}
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                🔢 {t("counter.title")}
+                🔢 {t("title")}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                {t("counter.subtitle")}
+                {t("subtitle")}
               </p>
             </div>
 

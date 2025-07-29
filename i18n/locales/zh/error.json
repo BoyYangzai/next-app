@@ -24,5 +24,41 @@
     },
     "button": "触发错误",
     "errorMessage": "这是一个演示错误！ErrorBoundary 将捕获此错误。"
+  },
+  "page": {
+    "title": "ErrorBoundary 错误边界测试",
+    "subtitle": "演示 React ErrorBoundary 如何优雅地捕获和处理组件错误，提供用户友好的错误界面",
+    "headerTitle": "错误边界测试",
+    "headerSubtitle": "ErrorBoundary 错误处理演示",
+    "basicErrorCapture": "🔥 基本错误捕获",
+    "functionDescription": "📝 功能说明",
+    "nestedErrorBoundary": "🏗️ 嵌套错误边界",
+    "bestPractices": "💡 ErrorBoundary 最佳实践",
+    "applicableScenarios": "✅ 适用场景",
+    "uncaughtErrors": "❌ 无法捕获的错误",
+    "areaA": "区域 A",
+    "areaB": "区域 B",
+    "areaC": "区域 C",
+    "description": {
+      "intro": "ErrorBoundary 是 React 16 引入的错误处理机制：",
+      "captureErrors": "捕获子组件树中的 JavaScript 错误",
+      "logErrors": "记录错误信息用于调试",
+      "fallbackUI": "显示备用 UI 而不是崩溃整个应用",
+      "retryMechanism": "提供错误重试机制",
+      "nestedDemo": "演示嵌套的 ErrorBoundary，展示错误隔离能力：",
+      "isolatedError": "⭐ 触发任意区域的错误，其他区域不受影响"
+    },
+    "scenarios": {
+      "thirdParty": "• 第三方组件包裹",
+      "complexModules": "• 复杂功能模块隔离",
+      "businessProcess": "• 关键业务流程保护",
+      "productionDegradation": "• 生产环境错误降级"
+    },
+    "uncaught": {
+      "eventHandlers": "• 事件处理器中的错误",
+      "asyncCode": "• 异步代码 (setTimeout, Promise)",
+      "ssrErrors": "• SSR 渲染期间的错误",
+      "boundaryErrors": "• ErrorBoundary 自身的错误"
+    }
   }
 }

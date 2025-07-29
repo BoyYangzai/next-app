@@ -46,12 +46,21 @@
     }
   },
   "navigation": {
+    "home": "功能概览",
+    "homeDesc": "项目功能总览",
+    "homeShort": "首页",
     "themeTest": "主题",
     "themeTestDesc": "多主题切换",
+    "themeShort": "主题",
     "mobxTest": "MobX测试",
     "mobxTestDesc": "状态管理",
+    "mobxShort": "MobX",
     "seoTest": "SEO测试",
-    "seoTestDesc": "SEO验证"
+    "seoTestDesc": "SEO验证",
+    "seoShort": "SEO",
+    "errorBoundary": "错误边界",
+    "errorBoundaryDesc": "ErrorBoundary 错误处理测试",
+    "errorBoundaryShort": "错误"
   },
   "seo": {
     "title": "SEO 功能测试",
@@ -82,5 +91,26 @@
     "themeSwitch": "主题切换",
     "times": "次",
     "techStack": "Tailwind CSS 4.x + MobX + TypeScript"
+  },
+  "stats": {
+    "vsLastMonth": "vs 上月"
+  },
+  "project": {
+    "progress": "进度",
+    "status": {
+      "completed": "已完成",
+      "inProgress": "进行中",
+      "planning": "计划中",
+      "unknown": "未知"
+    }
+  },
+  "themes": {
+    "light": "亮色",
+    "dark": "暗色",
+    "blue": "蓝色",
+    "green": "绿色",
+    "purple": "紫色",
+    "orange": "橙色",
+    "red": "红色"
   }
 }

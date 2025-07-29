@@ -11,13 +11,25 @@ export type Theme =
 export type Language = "zh" | "en";
 
 export const THEMES = {
-  light: { name: "亮色", color: "#3B82F6", className: "" },
-  dark: { name: "暗色", color: "#1E293B", className: "theme-dark" },
-  blue: { name: "蓝色", color: "#2563EB", className: "theme-blue" },
-  green: { name: "绿色", color: "#22C55E", className: "theme-green" },
-  purple: { name: "紫色", color: "#9333EA", className: "theme-purple" },
-  orange: { name: "橙色", color: "#F97316", className: "theme-orange" },
-  red: { name: "红色", color: "#EF4444", className: "theme-red" },
+  light: { nameKey: "themes.light", color: "#3B82F6", className: "" },
+  dark: { nameKey: "themes.dark", color: "#1E293B", className: "theme-dark" },
+  blue: { nameKey: "themes.blue", color: "#2563EB", className: "theme-blue" },
+  green: {
+    nameKey: "themes.green",
+    color: "#22C55E",
+    className: "theme-green",
+  },
+  purple: {
+    nameKey: "themes.purple",
+    color: "#9333EA",
+    className: "theme-purple",
+  },
+  orange: {
+    nameKey: "themes.orange",
+    color: "#F97316",
+    className: "theme-orange",
+  },
+  red: { nameKey: "themes.red", color: "#EF4444", className: "theme-red" },
 };
 
 export const LANGUAGES = {
@@ -28,8 +40,10 @@ export const LANGUAGES = {
 // 计数器历史条目接口
 interface CounterHistoryEntry {
   timestamp: number;
-  action: string;
+  actionKey?: string; // 翻译键而不是硬编码文本
+  action?: string; // 兼容旧数据
   value: number;
+  actionValue?: number; // 用于addValue操作的数值
 }
 
 // 页面历史条目接口
@@ -88,7 +102,18 @@ class Global {
       // 读取计数器历史
       const savedCounterHistory = localStorage.getItem("counterHistory");
       if (savedCounterHistory) {
-        this.counterHistory = JSON.parse(savedCounterHistory);
+        const parsedHistory = JSON.parse(savedCounterHistory);
+        // 检查是否有旧格式的数据，如果有则清空
+        const hasOldFormat = parsedHistory.some(
+          (entry: any) => entry.action && !entry.actionKey,
+        );
+        if (hasOldFormat) {
+          console.log("Detected old format counter history, clearing...");
+          this.counterHistory = [];
+          localStorage.removeItem("counterHistory");
+        } else {
+          this.counterHistory = parsedHistory;
+        }
       }
 
       // 读取页面历史
@@ -154,36 +179,41 @@ class Global {
   // 计数器操作
   increment = () => {
     this.counter += 1;
-    this.addCounterHistory("增加", this.counter);
+    this.addCounterHistory("actions.increment", this.counter);
     this.saveCounterState();
   };
 
   decrement = () => {
     this.counter -= 1;
-    this.addCounterHistory("减少", this.counter);
+    this.addCounterHistory("actions.decrement", this.counter);
     this.saveCounterState();
   };
 
   reset = () => {
     this.counter = 0;
-    this.addCounterHistory("重置", this.counter);
+    this.addCounterHistory("actions.reset", this.counter);
     this.saveCounterState();
   };
 
   // 添加指定数值
   addValue = (value: number) => {
     this.counter += value;
-    const action = value > 0 ? `增加 ${value}` : `减少 ${Math.abs(value)}`;
-    this.addCounterHistory(action, this.counter);
+    const actionKey = value > 0 ? "actions.addValue" : "actions.subtractValue";
+    this.addCounterHistory(actionKey, this.counter, Math.abs(value));
     this.saveCounterState();
   };
 
   // 添加计数器历史
-  private addCounterHistory = (action: string, value: number) => {
+  private addCounterHistory = (
+    actionKey: string,
+    value: number,
+    actionValue?: number,
+  ) => {
     this.counterHistory.push({
       timestamp: Date.now(),
-      action,
+      actionKey,
       value,
+      actionValue,
     });
 
     // 只保留最近 50 条历史
@@ -207,6 +237,16 @@ class Global {
       localStorage.setItem("counter", this.counter.toString());
     } catch (error) {
       console.error("Error saving counter state:", error);
+    }
+  };
+
+  // 清空计数器历史（用于测试）
+  clearCounterHistory = () => {
+    this.counterHistory = [];
+    try {
+      localStorage.removeItem("counterHistory");
+    } catch (error) {
+      console.error("Error clearing counter history:", error);
     }
   };
 
@@ -294,7 +334,7 @@ class Global {
   // 计算属性：全局统计（用于页面底部显示）
   get stats() {
     return {
-      currentTheme: this.currentTheme.name,
+      currentTheme: this.currentTheme.nameKey,
       currentLanguage: this.currentLanguage.name,
       counterValue: this.counter,
       themeChanges: this.themeStats.totalSwitches,

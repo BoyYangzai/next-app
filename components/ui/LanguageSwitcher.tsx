@@ -16,6 +16,7 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = observer(
     const router = useRouter();
     const pathname = usePathname();
     const currentLang = useLang();
+    const { t } = useTranslation("common");
 
     const handleLanguageChange = async (lang: Language) => {
       console.log("Language switch clicked:", lang);
@@ -59,7 +60,7 @@ const LanguageSwitcher: FC<LanguageSwitcherProps> = observer(
             >
               <span className="text-sm">{lang.flag}</span>
               <span className="text-xs font-medium whitespace-nowrap">
-                {key === "zh" ? "中文" : "EN"}
+                {key === "zh" ? t("language.chinese") : t("language.english")}
               </span>
             </button>
           ))}

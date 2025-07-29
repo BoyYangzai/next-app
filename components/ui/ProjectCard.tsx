@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/i18n/client";
 
 interface Project {
   id: number;
@@ -18,6 +19,7 @@ interface ProjectCardProps {
 
 const ProjectCard: FC<ProjectCardProps> = observer(
   ({ project, onProgressUpdate }) => {
+    const { t } = useTranslation("common");
     const getStatusColor = (status: string) => {
       switch (status) {
         case "completed":
@@ -34,13 +36,13 @@ const ProjectCard: FC<ProjectCardProps> = observer(
     const getStatusText = (status: string) => {
       switch (status) {
         case "completed":
-          return "已完成";
+          return t("project.status.completed");
         case "in-progress":
-          return "进行中";
+          return t("project.status.inProgress");
         case "planning":
-          return "计划中";
+          return t("project.status.planning");
         default:
-          return "未知";
+          return t("project.status.unknown");
       }
     };
 
@@ -84,7 +86,7 @@ const ProjectCard: FC<ProjectCardProps> = observer(
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              进度
+              {t("project.progress")}
             </span>
             <span className="text-sm font-medium text-gray-900 dark:text-white">
               {project.progress}%

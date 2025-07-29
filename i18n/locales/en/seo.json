@@ -23,5 +23,28 @@
     "canonicalUrls": "Canonical URLs",
     "robotsOptimization": "Robots Optimization",
     "sitemapGeneration": "Sitemap Generation"
-  }
+  },
+  "tools": {
+    "pageSpeedInsights": "Google Performance Test",
+    "htmlValidator": "W3C Markup Validation",
+    "facebookDebugger": "Open Graph Test",
+    "twitterCardValidator": "Twitter Card Validation",
+    "richResultsTest": "Google Rich Media Test",
+    "sitemapXml": "Sitemap",
+    "robotsTxt": "Crawler Instructions"
+  },
+  "configuration": {
+    "siteConfig": "Site Configuration",
+    "pageConfig": "Page Configuration",
+    "completeGuide": "Complete Guide"
+  },
+  "meta": {
+    "title": "Title",
+    "description": "Description",
+    "keywords": "Keywords",
+    "canonicalUrl": "Canonical URL",
+    "languageAlternates": "Language Alternates",
+    "robots": "Robots"
+  },
+  "found": "found"
 }

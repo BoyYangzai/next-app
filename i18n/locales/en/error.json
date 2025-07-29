@@ -24,5 +24,41 @@
     },
     "button": "Trigger Error",
     "errorMessage": "This is a demo error! ErrorBoundary will catch this error."
+  },
+  "page": {
+    "title": "ErrorBoundary Error Boundary Test",
+    "subtitle": "Demonstrates how React ErrorBoundary gracefully captures and handles component errors, providing user-friendly error interfaces",
+    "headerTitle": "Error Boundary Test",
+    "headerSubtitle": "ErrorBoundary Error Handling Demo",
+    "basicErrorCapture": "🔥 Basic Error Capture",
+    "functionDescription": "📝 Function Description",
+    "nestedErrorBoundary": "🏗️ Nested Error Boundary",
+    "bestPractices": "💡 ErrorBoundary Best Practices",
+    "applicableScenarios": "✅ Applicable Scenarios",
+    "uncaughtErrors": "❌ Uncaught Errors",
+    "areaA": "Area A",
+    "areaB": "Area B",
+    "areaC": "Area C",
+    "description": {
+      "intro": "ErrorBoundary is an error handling mechanism introduced in React 16:",
+      "captureErrors": "Capture JavaScript errors in child component trees",
+      "logErrors": "Log error information for debugging",
+      "fallbackUI": "Display fallback UI instead of crashing the entire app",
+      "retryMechanism": "Provide error retry mechanism",
+      "nestedDemo": "Demonstrates nested ErrorBoundary, showing error isolation capabilities:",
+      "isolatedError": "⭐ Trigger errors in any area, other areas remain unaffected"
+    },
+    "scenarios": {
+      "thirdParty": "• Third-party component wrapping",
+      "complexModules": "• Complex functional module isolation",
+      "businessProcess": "• Critical business process protection",
+      "productionDegradation": "• Production environment error degradation"
+    },
+    "uncaught": {
+      "eventHandlers": "• Errors in event handlers",
+      "asyncCode": "• Asynchronous code (setTimeout, Promise)",
+      "ssrErrors": "• Errors during SSR rendering",
+      "boundaryErrors": "• Errors in ErrorBoundary itself"
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/i18n/client";
 
 interface StatsCardProps {
   title: string;
@@ -19,6 +20,7 @@ const StatsCard: FC<StatsCardProps> = ({
   color,
   trend,
 }) => {
+  const { t } = useTranslation("common");
   const getColorClasses = (color: string) => {
     switch (color) {
       case "primary":
@@ -94,7 +96,9 @@ const StatsCard: FC<StatsCardProps> = ({
               >
                 {Math.abs(trend.value)}%
               </span>
-              <span className="text-sm text-gray-500 ml-1">vs 上月</span>
+              <span className="text-sm text-gray-500 ml-1">
+                {t("stats.vsLastMonth")}
+              </span>
             </div>
           )}
         </div>

@@ -10,44 +10,44 @@ interface ThemeSelectorProps {
 // 主题配置
 const THEME_CONFIG = {
   light: {
-    name: "theme.themes.light.name",
-    description: "theme.themes.light.description",
+    name: "themes.light.name",
+    description: "themes.light.description",
     color: "#3B82F6",
     icon: "☀️",
   },
   dark: {
-    name: "theme.themes.dark.name",
-    description: "theme.themes.dark.description",
+    name: "themes.dark.name",
+    description: "themes.dark.description",
     color: "#1E293B",
     icon: "🌙",
   },
   blue: {
-    name: "theme.themes.blue.name",
-    description: "theme.themes.blue.description",
+    name: "themes.blue.name",
+    description: "themes.blue.description",
     color: "#2563EB",
     icon: "💙",
   },
   green: {
-    name: "theme.themes.green.name",
-    description: "theme.themes.green.description",
+    name: "themes.green.name",
+    description: "themes.green.description",
     color: "#22C55E",
     icon: "💚",
   },
   purple: {
-    name: "theme.themes.purple.name",
-    description: "theme.themes.purple.description",
+    name: "themes.purple.name",
+    description: "themes.purple.description",
     color: "#9333EA",
     icon: "💜",
   },
   orange: {
-    name: "theme.themes.orange.name",
-    description: "theme.themes.orange.description",
+    name: "themes.orange.name",
+    description: "themes.orange.description",
     color: "#F97316",
     icon: "🧡",
   },
   red: {
-    name: "theme.themes.red.name",
-    description: "theme.themes.red.description",
+    name: "themes.red.name",
+    description: "themes.red.description",
     color: "#EF4444",
     icon: "❤️",
   },
@@ -81,9 +81,9 @@ const ThemeSelector: FC<ThemeSelectorProps> = observer(({ className = "" }) => {
       <div className={`space-y-6 ${className}`}>
         <div className="text-center">
           <h3 className="text-xl font-semibold text-card-foreground mb-2">
-            🎨 加载主题选择器...
+            🎨 {t("loading.title")}
           </h3>
-          <p className="text-muted-foreground">正在初始化主题系统</p>
+          <p className="text-muted-foreground">{t("loading.description")}</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
@@ -96,9 +96,11 @@ const ThemeSelector: FC<ThemeSelectorProps> = observer(({ className = "" }) => {
               <div className="text-2xl mb-2">{themeConfig.icon}</div>
               <div className="text-center">
                 <div className="font-medium text-card-foreground text-sm">
-                  加载中...
+                  {t("loading.loadingText")}
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">请稍候</div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {t("loading.pleaseWait")}
+                </div>
               </div>
             </div>
           ))}
@@ -112,10 +114,10 @@ const ThemeSelector: FC<ThemeSelectorProps> = observer(({ className = "" }) => {
       {/* 主题选择标题 */}
       <div className="text-center">
         <h3 className="text-xl font-semibold text-card-foreground mb-2">
-          🎨 {t("theme.colorSelection")}
+          🎨 {t("colorSelection")}
         </h3>
         <p className="text-muted-foreground">
-          {t("theme.colorSelectionDesc", { count: themes?.length || 7 })}
+          {t("colorSelectionDesc", { count: themes?.length || 7 })}
         </p>
       </div>
 
@@ -169,17 +171,17 @@ const ThemeSelector: FC<ThemeSelectorProps> = observer(({ className = "" }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="theme-card p-6">
           <h4 className="font-semibold text-card-foreground mb-4">
-            📊 {t("theme.stats.title")}
+            📊 {t("stats.title")}
           </h4>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">
-                {t("theme.stats.currentTheme")}:
+                {t("stats.currentTheme")}:
               </span>
               <span className="font-medium text-card-foreground">
                 {theme
                   ? t(THEME_CONFIG[theme as keyof typeof THEME_CONFIG]?.name)
-                  : "Loading..."}
+                  : t("loading.loadingText")}
               </span>
             </div>
           </div>
@@ -187,24 +189,32 @@ const ThemeSelector: FC<ThemeSelectorProps> = observer(({ className = "" }) => {
 
         <div className="theme-card p-6">
           <h4 className="font-semibold text-card-foreground mb-4">
-            ⚡ {t("theme.features.title")}
+            ⚡ {t("features.title")}
           </h4>
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">next-themes 优化</span>
+              <span className="text-muted-foreground">
+                {t("features.optimizedFeatures")}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">零闪烁切换</span>
+              <span className="text-muted-foreground">
+                {t("features.zeroFlicker")}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">自动持久化</span>
+              <span className="text-muted-foreground">
+                {t("features.autoPersist")}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">SSR 兼容</span>
+              <span className="text-muted-foreground">
+                {t("features.ssrCompatible")}
+              </span>
             </div>
           </div>
         </div>
