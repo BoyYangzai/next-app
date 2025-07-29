@@ -3,6 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "@/i18n/client";
 import { Navigation, LanguageSwitcher } from "@/components/ui";
+import { Skeleton } from "antd";
 
 interface MetaData {
   title: string;
@@ -18,6 +19,20 @@ interface MetaData {
   alternateCount: number;
   robots: string;
 }
+
+// 骨架屏组件
+const SkeletonText: FC<{ width?: number }> = ({ width = 200 }) => (
+  <Skeleton.Input
+    active
+    size="small"
+    style={{
+      width: width,
+      height: 16,
+      minHeight: 16,
+      borderRadius: 4,
+    }}
+  />
+);
 
 const SeoTestPage: FC = () => {
   const { t } = useTranslation();
@@ -38,8 +53,6 @@ const SeoTestPage: FC = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     if (typeof document !== "undefined") {
       const getMetaContent = (selector: string): string => {
         const element = document.querySelector(selector);
@@ -67,42 +80,20 @@ const SeoTestPage: FC = () => {
         ).length,
         robots: getMetaContent('meta[name="robots"]'),
       });
+
+      // 设置mounted状态在DOM操作完成后
+      setMounted(true);
+    }
+
+    // 设置当前URL
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
     }
   }, []);
 
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-background text-foreground animate-theme-transition">
-        {/* 顶部导航栏 */}
-        <header className="theme-card border-b sticky top-0 z-50 backdrop-blur-sm bg-card/95">
-          <div className="max-w-6xl mx-auto px-6 py-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-              <div className="text-center lg:text-left">
-                <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                  📊 {t("seo.title")}
-                </h1>
-                <p className="text-muted-foreground">{t("seo.description")}</p>
-              </div>
+  // 移除loading状态渲染，直接渲染主要内容
 
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <LanguageSwitcher />
-                <Navigation className="flex-shrink-0" />
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* 加载状态 */}
-        <main className="max-w-6xl mx-auto px-6 py-8">
-          <div className="text-center">
-            <p className="text-xl text-muted-foreground">Loading...</p>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+  const [currentUrl, setCurrentUrl] = useState("");
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">
@@ -153,19 +144,22 @@ const SeoTestPage: FC = () => {
                 <div>
                   <strong>Title:</strong>
                   <div className="text-muted-foreground break-all">
-                    {metaData.title}
+                    {metaData.title ||
+                      (mounted ? "N/A" : <SkeletonText width={200} />)}
                   </div>
                 </div>
                 <div>
                   <strong>Description:</strong>
                   <div className="text-muted-foreground">
-                    {metaData.description}
+                    {metaData.description ||
+                      (mounted ? "N/A" : <SkeletonText width={300} />)}
                   </div>
                 </div>
                 <div>
                   <strong>Keywords:</strong>
                   <div className="text-muted-foreground">
-                    {metaData.keywords}
+                    {metaData.keywords ||
+                      (mounted ? "N/A" : <SkeletonText width={250} />)}
                   </div>
                 </div>
               </div>
@@ -180,19 +174,22 @@ const SeoTestPage: FC = () => {
                 <div>
                   <strong>og:title:</strong>
                   <div className="text-muted-foreground break-all">
-                    {metaData.ogTitle}
+                    {metaData.ogTitle ||
+                      (mounted ? "N/A" : <SkeletonText width={200} />)}
                   </div>
                 </div>
                 <div>
                   <strong>og:description:</strong>
                   <div className="text-muted-foreground">
-                    {metaData.ogDescription}
+                    {metaData.ogDescription ||
+                      (mounted ? "N/A" : <SkeletonText width={300} />)}
                   </div>
                 </div>
                 <div>
                   <strong>og:url:</strong>
                   <div className="text-muted-foreground break-all">
-                    {metaData.ogUrl}
+                    {metaData.ogUrl ||
+                      (mounted ? "N/A" : <SkeletonText width={280} />)}
                   </div>
                 </div>
               </div>
@@ -207,19 +204,22 @@ const SeoTestPage: FC = () => {
                 <div>
                   <strong>twitter:card:</strong>
                   <div className="text-muted-foreground">
-                    {metaData.twitterCard}
+                    {metaData.twitterCard ||
+                      (mounted ? "N/A" : <SkeletonText width={150} />)}
                   </div>
                 </div>
                 <div>
                   <strong>twitter:title:</strong>
                   <div className="text-muted-foreground break-all">
-                    {metaData.twitterTitle}
+                    {metaData.twitterTitle ||
+                      (mounted ? "N/A" : <SkeletonText width={200} />)}
                   </div>
                 </div>
                 <div>
                   <strong>twitter:site:</strong>
                   <div className="text-muted-foreground">
-                    {metaData.twitterSite}
+                    {metaData.twitterSite ||
+                      (mounted ? "N/A" : <SkeletonText width={120} />)}
                   </div>
                 </div>
               </div>
@@ -234,18 +234,26 @@ const SeoTestPage: FC = () => {
                 <div>
                   <strong>Canonical URL:</strong>
                   <div className="text-muted-foreground break-all">
-                    {metaData.canonical}
+                    {metaData.canonical ||
+                      (mounted ? "N/A" : <SkeletonText width={280} />)}
                   </div>
                 </div>
                 <div>
                   <strong>Language Alternates:</strong>
                   <div className="text-muted-foreground">
-                    {metaData.alternateCount} found
+                    {mounted ? (
+                      `${metaData.alternateCount} found`
+                    ) : (
+                      <SkeletonText width={100} />
+                    )}
                   </div>
                 </div>
                 <div>
                   <strong>Robots:</strong>
-                  <div className="text-muted-foreground">{metaData.robots}</div>
+                  <div className="text-muted-foreground">
+                    {metaData.robots ||
+                      (mounted ? "N/A" : <SkeletonText width={180} />)}
+                  </div>
                 </div>
               </div>
             </div>
@@ -258,10 +266,15 @@ const SeoTestPage: FC = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <a
-                href={`https://developers.google.com/speed/pagespeed/insights/?url=${encodeURIComponent(currentUrl)}`}
-                target="_blank"
+                href={
+                  currentUrl
+                    ? `https://developers.google.com/speed/pagespeed/insights/?url=${encodeURIComponent(currentUrl)}`
+                    : "#"
+                }
+                target={currentUrl ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                className="p-4 border rounded-lg hover:bg-muted transition-colors"
+                className={`p-4 border rounded-lg transition-colors ${currentUrl ? "hover:bg-muted" : "opacity-50 cursor-not-allowed"}`}
+                onClick={!currentUrl ? (e) => e.preventDefault() : undefined}
               >
                 <div className="font-medium">PageSpeed Insights</div>
                 <div className="text-sm text-muted-foreground">
@@ -270,10 +283,15 @@ const SeoTestPage: FC = () => {
               </a>
 
               <a
-                href={`https://validator.w3.org/nu/?doc=${encodeURIComponent(currentUrl)}`}
-                target="_blank"
+                href={
+                  currentUrl
+                    ? `https://validator.w3.org/nu/?doc=${encodeURIComponent(currentUrl)}`
+                    : "#"
+                }
+                target={currentUrl ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                className="p-4 border rounded-lg hover:bg-muted transition-colors"
+                className={`p-4 border rounded-lg transition-colors ${currentUrl ? "hover:bg-muted" : "opacity-50 cursor-not-allowed"}`}
+                onClick={!currentUrl ? (e) => e.preventDefault() : undefined}
               >
                 <div className="font-medium">HTML Validator</div>
                 <div className="text-sm text-muted-foreground">
@@ -282,10 +300,15 @@ const SeoTestPage: FC = () => {
               </a>
 
               <a
-                href={`https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(currentUrl)}`}
-                target="_blank"
+                href={
+                  currentUrl
+                    ? `https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(currentUrl)}`
+                    : "#"
+                }
+                target={currentUrl ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                className="p-4 border rounded-lg hover:bg-muted transition-colors"
+                className={`p-4 border rounded-lg transition-colors ${currentUrl ? "hover:bg-muted" : "opacity-50 cursor-not-allowed"}`}
+                onClick={!currentUrl ? (e) => e.preventDefault() : undefined}
               >
                 <div className="font-medium">Facebook Debugger</div>
                 <div className="text-sm text-muted-foreground">
@@ -306,10 +329,15 @@ const SeoTestPage: FC = () => {
               </a>
 
               <a
-                href={`https://search.google.com/test/rich-results?url=${encodeURIComponent(currentUrl)}`}
-                target="_blank"
+                href={
+                  currentUrl
+                    ? `https://search.google.com/test/rich-results?url=${encodeURIComponent(currentUrl)}`
+                    : "#"
+                }
+                target={currentUrl ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                className="p-4 border rounded-lg hover:bg-muted transition-colors"
+                className={`p-4 border rounded-lg transition-colors ${currentUrl ? "hover:bg-muted" : "opacity-50 cursor-not-allowed"}`}
+                onClick={!currentUrl ? (e) => e.preventDefault() : undefined}
               >
                 <div className="font-medium">Rich Results Test</div>
                 <div className="text-sm text-muted-foreground">
