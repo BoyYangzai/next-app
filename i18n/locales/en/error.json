@@ -4,6 +4,25 @@
     "alt": "Error Icon",
     "retry": "Retry",
     "reload": "Reload Page",
-    "details": "Details"
+    "details": "Details",
+    "stackTrace": "Component Stack Trace",
+    "devMode": "Development Mode",
+    "copy": "Copy",
+    "noStackInfo": "No stack information"
+  },
+  "trigger": {
+    "title": "🚨 Error Boundary Test",
+    "description": "Click the button below to trigger an error and observe how ErrorBoundary gracefully handles errors and displays error interface.",
+    "features": {
+      "title": "Test Features:",
+      "items": [
+        "Error capture and display",
+        "Error retry mechanism",
+        "Detailed error information in development",
+        "User-friendly error interface"
+      ]
+    },
+    "button": "Trigger Error",
+    "errorMessage": "This is a demo error! ErrorBoundary will catch this error."
   }
 }

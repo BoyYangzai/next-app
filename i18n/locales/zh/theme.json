@@ -1,0 +1,52 @@
+{
+  "title": "Tailwind CSS 4.x 多主题系统",
+  "subtitle": "体验最新的 Tailwind CSS 4.x 主题切换技术，支持 7 种精美主题，使用原生 CSS 变量和 @theme 指令，实现流畅的颜色过渡效果",
+  "colorSelection": "主题色彩选择",
+  "colorSelectionDesc": "选择你喜欢的界面主题，支持 {{count}} 种不同风格",
+  "themes": {
+    "light": {
+      "name": "亮色主题",
+      "description": "经典的亮色界面"
+    },
+    "dark": {
+      "name": "暗色主题",
+      "description": "护眼的暗色界面"
+    },
+    "blue": {
+      "name": "蓝色主题",
+      "description": "专业的蓝色调"
+    },
+    "green": {
+      "name": "绿色主题",
+      "description": "清新的绿色调"
+    },
+    "purple": {
+      "name": "紫色主题",
+      "description": "优雅的紫色调"
+    },
+    "orange": {
+      "name": "橙色主题",
+      "description": "温暖的橙色调"
+    },
+    "red": {
+      "name": "红色主题",
+      "description": "活力的红色调"
+    }
+  },
+  "stats": {
+    "title": "主题使用统计",
+    "currentTheme": "当前主题",
+    "switchCount": "切换次数",
+    "mostUsed": "最常用",
+    "times": "次"
+  },
+  "features": {
+    "title": "主题系统特性",
+    "tailwind4": "Tailwind CSS 4.x 原生支持",
+    "cssVariables": "CSS 变量动态切换",
+    "localStorage": "localStorage 持久化",
+    "smoothTransition": "流畅的过渡动画",
+    "responsive": "响应式设计适配",
+    "maintainable": "易于维护扩展"
+  }
+}

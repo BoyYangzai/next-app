@@ -11,7 +11,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 
 const HomePage: FC = observer(() => {
   const { global } = useStore();
-  const { t } = useTranslation();
+  const { t } = useTranslation("home");
   const lang = useLang();
 
   return (
@@ -56,33 +56,33 @@ const HomePage: FC = observer(() => {
           <section className="text-center space-y-6">
             <div className="space-y-4">
               <h2 className="text-4xl font-bold text-foreground">
-                功能测试实验室
+                {t("title")}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                基于 Next.js 15 + Tailwind CSS 4.x + MobX 的现代前端技术测试平台
+                {t("subtitle")}
               </p>
             </div>
 
             <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                <span>Next.js 15</span>
+                <span>{t("technologies.nextjs")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
-                <span>Tailwind CSS 4.x</span>
+                <span>{t("technologies.tailwind")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-                <span>MobX</span>
+                <span>{t("technologies.mobx")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
-                <span>TypeScript</span>
+                <span>{t("technologies.typescript")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                <span>国际化 (i18n)</span>
+                <span>{t("technologies.i18n")}</span>
               </div>
             </div>
           </section>
@@ -97,40 +97,39 @@ const HomePage: FC = observer(() => {
                     <div className="text-5xl">🎨</div>
                     <div>
                       <h3 className="text-2xl font-bold text-card-foreground group-hover:text-primary transition-colors">
-                        主题测试
+                        {t("cards.theme.title")}
                       </h3>
                       <p className="text-muted-foreground">
-                        Tailwind CSS 4.x 主题切换
+                        {t("cards.theme.subtitle")}
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <p className="text-sm text-muted-foreground">
-                      体验 Tailwind CSS 4.x 的多主题切换功能，支持 7
-                      种精美主题，零闪烁切换。
+                      {t("cards.theme.description")}
                     </p>
 
                     <div className="space-y-2">
                       <h4 className="text-sm font-semibold text-card-foreground">
-                        主要特性:
+                        {t("cards.theme.features.title")}
                       </h4>
                       <ul className="text-xs text-muted-foreground space-y-1">
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>7 种内置主题 + 自定义主题</span>
+                          <span>{t("cards.theme.features.items.0")}</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>CSS-First 配置方式</span>
+                          <span>{t("cards.theme.features.items.1")}</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>无闪烁主题切换动画</span>
+                          <span>{t("cards.theme.features.items.2")}</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>完整的设计令牌系统</span>
+                          <span>{t("cards.theme.features.items.3")}</span>
                         </li>
                       </ul>
                     </div>
@@ -138,7 +137,7 @@ const HomePage: FC = observer(() => {
 
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">
-                      点击体验 →
+                      {t("cards.theme.action")}
                     </span>
                     <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
                       <span className="text-primary text-sm">→</span>
@@ -156,39 +155,39 @@ const HomePage: FC = observer(() => {
                     <div className="text-5xl">🔢</div>
                     <div>
                       <h3 className="text-2xl font-bold text-card-foreground group-hover:text-primary transition-colors">
-                        状态管理
+                        {t("cards.state.title")}
                       </h3>
                       <p className="text-muted-foreground">
-                        MobX 跨组件状态管理
+                        {t("cards.state.subtitle")}
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <p className="text-sm text-muted-foreground">
-                      通过多个独立组件验证 MobX 的跨组件响应式状态管理能力。
+                      {t("cards.state.description")}
                     </p>
 
                     <div className="space-y-2">
                       <h4 className="text-sm font-semibold text-card-foreground">
-                        测试功能:
+                        {t("cards.state.features.title")}
                       </h4>
                       <ul className="text-xs text-muted-foreground space-y-1">
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>跨组件状态同步</span>
+                          <span>{t("cards.state.features.items.0")}</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>计算属性实时更新</span>
+                          <span>{t("cards.state.features.items.1")}</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>状态持久化到本地存储</span>
+                          <span>{t("cards.state.features.items.2")}</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                          <span>跨页面状态保持</span>
+                          <span>{t("cards.state.features.items.3")}</span>
                         </li>
                       </ul>
                     </div>
@@ -196,7 +195,7 @@ const HomePage: FC = observer(() => {
 
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">
-                      点击测试 →
+                      {t("cards.state.action")}
                     </span>
                     <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
                       <span className="text-primary text-sm">→</span>
@@ -211,11 +210,11 @@ const HomePage: FC = observer(() => {
           <section className="theme-card p-8">
             <div className="text-center space-y-4 mb-8">
               <h3 className="text-2xl font-bold text-foreground">
-                🚨 ErrorBoundary 错误边界演示
+                🚨 {t("cards.errorBoundary.title")}
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                演示 React ErrorBoundary
-                如何优雅地捕获和处理组件错误，点击按钮触发错误或查看完整功能
+                {t("cards.errorBoundary.description")}，
+                {t("cards.errorBoundary.action")}
               </p>
             </div>
 
@@ -226,17 +225,16 @@ const HomePage: FC = observer(() => {
 
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-card-foreground">
-                  📖 了解更多
+                  {t("cards.errorBoundary.learnMore")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  ErrorBoundary 是现代 React
-                  应用中重要的错误处理机制，可以防止单个组件的错误影响整个应用。
+                  {t("cards.errorBoundary.learnMoreDesc")}
                 </p>
                 <Link
                   href={`/${lang}/error-boundary`}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
                 >
-                  查看完整演示 →
+                  {t("cards.errorBoundary.viewDemo")}
                 </Link>
               </div>
             </div>
@@ -245,34 +243,34 @@ const HomePage: FC = observer(() => {
           {/* 技术架构说明 */}
           <section className="theme-card p-8">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              🏗️ 技术架构特色
+              {t("architecture.title")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center space-y-3">
                 <div className="text-3xl">⚡</div>
                 <h4 className="font-semibold text-card-foreground">
-                  Tailwind CSS 4.x
+                  {t("architecture.features.tailwind.title")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  基于 Rust 引擎，构建速度提升 10 倍，支持 CSS-First 配置
+                  {t("architecture.features.tailwind.description")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">🔄</div>
                 <h4 className="font-semibold text-card-foreground">
-                  MobX 状态管理
+                  {t("architecture.features.mobx.title")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  简单直观的响应式状态管理，自动依赖追踪，最小化重渲染
+                  {t("architecture.features.mobx.description")}
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <div className="text-3xl">🌍</div>
                 <h4 className="font-semibold text-card-foreground">
-                  完整国际化
+                  {t("architecture.features.i18n.title")}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  基于 i18next 的完整 i18n 方案，支持路径级语言切换
+                  {t("architecture.features.i18n.description")}
                 </p>
               </div>
             </div>
@@ -281,52 +279,52 @@ const HomePage: FC = observer(() => {
           {/* 项目特点 */}
           <section className="theme-card p-8">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              ✨ 项目亮点
+              {t("highlights.title")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-card-foreground">
-                  🎯 开发体验优化
+                  {t("highlights.development.title")}
                 </h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
-                    <span>TypeScript 完整类型安全</span>
+                    <span>{t("highlights.development.items.0")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
-                    <span>统一的代码规范和格式化</span>
+                    <span>{t("highlights.development.items.1")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
-                    <span>模块化组件架构设计</span>
+                    <span>{t("highlights.development.items.2")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></span>
-                    <span>完整的开发工具链配置</span>
+                    <span>{t("highlights.development.items.3")}</span>
                   </li>
                 </ul>
               </div>
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-card-foreground">
-                  🚀 性能与体验
+                  {t("highlights.performance.title")}
                 </h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                    <span>Next.js 15 App Router 最新特性</span>
+                    <span>{t("highlights.performance.items.0")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                    <span>无闪烁主题切换动画</span>
+                    <span>{t("highlights.performance.items.1")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                    <span>响应式设计完美适配</span>
+                    <span>{t("highlights.performance.items.2")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></span>
-                    <span>状态持久化与恢复机制</span>
+                    <span>{t("highlights.performance.items.3")}</span>
                   </li>
                 </ul>
               </div>
@@ -379,9 +377,9 @@ const HomePage: FC = observer(() => {
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span>
-                  页面导航:{" "}
+                  {t("footer.pageNavigation")}:{" "}
                   <strong className="text-card-foreground">
-                    {global.stats.pageNavigations} 次
+                    {global.stats.pageNavigations} {t("footer.times")}
                   </strong>
                 </span>
               </div>

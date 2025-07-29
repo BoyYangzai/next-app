@@ -16,7 +16,7 @@ import {
 
 const CounterPage: FC = observer(() => {
   const { global } = useStore();
-  const { t } = useTranslation();
+  const { t } = useTranslation("counter");
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">

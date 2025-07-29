@@ -4,6 +4,25 @@
     "alt": "错误图标",
     "retry": "重试",
     "reload": "刷新页面",
-    "details": "详细信息"
+    "details": "详细信息",
+    "stackTrace": "组件堆栈跟踪",
+    "devMode": "开发模式",
+    "copy": "复制",
+    "noStackInfo": "无堆栈信息"
+  },
+  "trigger": {
+    "title": "🚨 错误边界测试",
+    "description": "点击下面的按钮触发一个错误，观察 ErrorBoundary 如何优雅地处理错误并显示错误界面。",
+    "features": {
+      "title": "测试功能:",
+      "items": [
+        "错误捕获和显示",
+        "错误重试机制",
+        "开发环境详细错误信息",
+        "用户友好的错误界面"
+      ]
+    },
+    "button": "触发错误",
+    "errorMessage": "这是一个演示错误！ErrorBoundary 将捕获此错误。"
   }
 }

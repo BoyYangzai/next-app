@@ -1,0 +1,27 @@
+{
+  "title": "SEO Testing",
+  "subtitle": "Comprehensive testing and validation of SEO configurations, including meta tags, Open Graph, Twitter Card, etc.",
+  "description": "Comprehensive testing and validation of SEO configurations, including meta tags, Open Graph, Twitter Card, etc.",
+  "metaTags": "Meta Tags",
+  "structuredData": "Structured Data",
+  "tools": "SEO Tools",
+  "configuration": "Configuration",
+  "pageTitle": "SEO Test Page",
+  "pageDescription": "Detect and validate current page SEO configuration",
+  "currentPageMeta": "Current Page Meta Information",
+  "openGraph": "Open Graph Tags",
+  "twitterCard": "Twitter Card Tags",
+  "technicalSeo": "Technical SEO",
+  "seoTools": "SEO Analysis Tools",
+  "toolsDescription": "Use these tools to analyze and optimize your SEO",
+  "features": {
+    "metaOptimization": "Meta Tags Optimization",
+    "openGraphSupport": "Open Graph Support",
+    "twitterCardSupport": "Twitter Card Support",
+    "structuredDataSupport": "Structured Data Support",
+    "multiLanguage": "Multi-language SEO",
+    "canonicalUrls": "Canonical URLs",
+    "robotsOptimization": "Robots Optimization",
+    "sitemapGeneration": "Sitemap Generation"
+  }
+}

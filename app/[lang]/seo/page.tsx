@@ -35,7 +35,7 @@ const SkeletonText: FC<{ width?: number }> = ({ width = 200 }) => (
 );
 
 const SeoTestPage: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("seo");
   const [metaData, setMetaData] = useState<MetaData>({
     title: "",
     description: "",
@@ -106,10 +106,10 @@ const SeoTestPage: FC = () => {
               <div className="text-2xl lg:text-3xl">📊</div>
               <div className="hidden sm:block">
                 <h1 className="text-lg lg:text-xl font-bold text-foreground">
-                  {t("seo.title")}
+                  {t("title")}
                 </h1>
                 <p className="text-xs lg:text-sm text-muted-foreground hidden lg:block">
-                  搜索引擎优化验证
+                  {t("subtitle")}
                 </p>
               </div>
             </div>
@@ -138,7 +138,7 @@ const SeoTestPage: FC = () => {
             {/* Meta 标签测试 */}
             <div className="p-6 border rounded-lg bg-card">
               <h3 className="text-xl font-semibold mb-4 flex items-center">
-                🏷️ {t("seo.metaTags")}
+                🏷️ {t("metaTags")}
               </h3>
               <div className="space-y-3 text-sm">
                 <div>

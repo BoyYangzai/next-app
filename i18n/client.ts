@@ -23,9 +23,17 @@ const i18n = i18next.use(initReactI18next).use(LanguageDetector);
 if (isDev) {
   i18n.use(
     resourcesToBackend((language, namespace, callback) => {
-      import(`./locales/${language}/${namespace}.json`).then((module) => {
-        callback(null, module.default);
-      });
+      import(`./locales/${language}/${namespace}.json`)
+        .then((module) => {
+          callback(null, module.default);
+        })
+        .catch((error) => {
+          console.error(
+            `Failed to load translation: ${language}/${namespace}`,
+            error,
+          );
+          callback(error, null);
+        });
     }),
   );
 }

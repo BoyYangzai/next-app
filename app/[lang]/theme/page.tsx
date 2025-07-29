@@ -9,7 +9,7 @@ import { Navigation, LanguageSwitcher } from "@/components/ui";
 
 const ThemePage: FC = observer(() => {
   const { global } = useStore();
-  const { t } = useTranslation();
+  const { t } = useTranslation("theme");
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">
@@ -89,13 +89,17 @@ const ThemePage: FC = observer(() => {
                 <div className="text-3xl font-bold text-secondary mb-1">
                   {global.stats.availableThemes}
                 </div>
-                <p className="text-sm text-muted-foreground">可用主题</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("features.title")}
+                </p>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted/30">
                 <div className="text-3xl font-bold text-ring mb-1">
                   {global.stats.currentTheme}
                 </div>
-                <p className="text-sm text-muted-foreground">当前主题</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("stats.currentTheme")}
+                </p>
               </div>
             </div>
           </section>

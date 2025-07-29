@@ -1,0 +1,52 @@
+{
+  "title": "Tailwind CSS 4.x Multi-Theme System",
+  "subtitle": "Experience the latest Tailwind CSS 4.x theme switching technology with 7 beautiful themes, using native CSS variables and @theme directive for smooth color transitions",
+  "colorSelection": "Theme Color Selection",
+  "colorSelectionDesc": "Choose your preferred interface theme, supporting {{count}} different styles",
+  "themes": {
+    "light": {
+      "name": "Light Theme",
+      "description": "Classic light interface"
+    },
+    "dark": {
+      "name": "Dark Theme",
+      "description": "Eye-friendly dark interface"
+    },
+    "blue": {
+      "name": "Blue Theme",
+      "description": "Professional blue tone"
+    },
+    "green": {
+      "name": "Green Theme",
+      "description": "Fresh green tone"
+    },
+    "purple": {
+      "name": "Purple Theme",
+      "description": "Elegant purple tone"
+    },
+    "orange": {
+      "name": "Orange Theme",
+      "description": "Warm orange tone"
+    },
+    "red": {
+      "name": "Red Theme",
+      "description": "Vibrant red tone"
+    }
+  },
+  "stats": {
+    "title": "Theme Usage Statistics",
+    "currentTheme": "Current Theme",
+    "switchCount": "Switch Count",
+    "mostUsed": "Most Used",
+    "times": "times"
+  },
+  "features": {
+    "title": "Theme System Features",
+    "tailwind4": "Tailwind CSS 4.x Native Support",
+    "cssVariables": "CSS Variables Dynamic Switching",
+    "localStorage": "localStorage Persistence",
+    "smoothTransition": "Smooth Transition Animation",
+    "responsive": "Responsive Design Adaptation",
+    "maintainable": "Easy to Maintain and Extend"
+  }
+}

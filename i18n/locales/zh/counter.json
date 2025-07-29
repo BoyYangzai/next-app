@@ -1,0 +1,67 @@
+{
+  "title": "MobX 状态管理测试",
+  "subtitle": "通过多个独立组件验证 MobX 的跨组件响应式状态管理能力",
+  "display": {
+    "title": "计数器显示",
+    "description": "当前计数器值，自动响应状态变化"
+  },
+  "controls": {
+    "title": "计数器控制",
+    "increment": "增加",
+    "decrement": "减少",
+    "reset": "重置"
+  },
+  "history": {
+    "title": "操作历史",
+    "empty": "还没有操作历史"
+  },
+  "stats": {
+    "title": "实时统计",
+    "totalOps": "总操作数",
+    "maxValue": "最大值",
+    "minValue": "最小值",
+    "avgValue": "平均值"
+  },
+  "crossPage": {
+    "title": "跨页面状态",
+    "currentPage": "当前页面",
+    "pageChanges": "页面切换次数"
+  },
+  "mobx": {
+    "title": "MobX 特性",
+    "reactive": "响应式状态更新",
+    "computed": "计算属性自动计算",
+    "persistent": "状态持久化存储",
+    "crossComponent": "跨组件状态共享",
+    "testGuide": {
+      "title": "测试指南",
+      "step1": "点击按钮观察所有组件同步更新",
+      "step2": "切换页面验证状态保持",
+      "step3": "刷新页面确认状态恢复",
+      "step4": "查看统计数据实时变化"
+    }
+  },
+  "currentValue": "当前计数值",
+  "quickActions": "快速操作",
+  "stateInfo": "MobX 状态信息",
+  "counterValue": "计数器值",
+  "currentTheme": "当前主题",
+  "themeSwitch": "主题切换",
+  "currentPage": "当前页面",
+  "availableThemes": "可用主题",
+  "dataPersistence": "数据持久化",
+  "enabled": "已启用",
+  "testGuide": "测试指南",
+  "basicTests": "基础功能测试",
+  "stateTests": "状态管理测试",
+  "testPoints": {
+    "clickButtons": "点击 +/- 按钮测试计数器响应",
+    "quickActions": "使用快速操作按钮测试批量更新",
+    "observeChanges": "观察数值变化的实时反馈",
+    "testReset": "重置按钮测试状态重置功能",
+    "switchPages": "切换到主题页面再返回，数据保持",
+    "refreshPage": "刷新浏览器页面，数据从 localStorage 恢复",
+    "switchTheme": "切换主题，计数器状态不受影响",
+    "reactiveUpdate": "所有操作都是响应式的，UI 立即更新"
+  }
+}

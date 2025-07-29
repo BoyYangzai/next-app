@@ -101,10 +101,10 @@ function DefaultErrorContent({
 
       {/* 开发环境下显示详细错误信息 */}
       {process.env.NODE_ENV === "development" && errorInfo && (
-        <div className="w-full max-w-xl">
+        <div className="w-full max-w-4xl">
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-3"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 mb-4 px-3 py-2 rounded-md hover:bg-muted/50"
           >
             {showDetails ? (
               <ChevronDown className="w-4 h-4" />
@@ -115,13 +115,35 @@ function DefaultErrorContent({
           </button>
 
           {showDetails && (
-            <div className="theme-card p-0 overflow-hidden">
-              <div className="bg-muted px-4 py-2 border-b">
-                <span className="text-sm font-medium">组件堆栈跟踪</span>
+            <div className="rounded-lg border border-border/50 overflow-hidden shadow-sm bg-card">
+              <div className="bg-muted/50 px-4 py-3 border-b border-border/30">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-foreground">
+                    {t("boundary.stackTrace")}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {t("boundary.devMode")}
+                  </span>
+                </div>
               </div>
-              <pre className="p-4 text-xs overflow-auto max-h-48 font-mono leading-relaxed bg-background">
-                {errorInfo.componentStack}
-              </pre>
+              <div className="relative">
+                <pre className="p-4 text-xs leading-relaxed font-mono text-foreground/80 bg-background/50 max-h-64 overflow-y-auto whitespace-pre-wrap break-words scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border/30">
+                  {errorInfo.componentStack?.trim() ||
+                    t("boundary.noStackInfo")}
+                </pre>
+                <div className="absolute top-2 right-2">
+                  <button
+                    onClick={() =>
+                      navigator.clipboard?.writeText(
+                        errorInfo.componentStack || "",
+                      )
+                    }
+                    className="px-2 py-1 text-xs bg-muted/80 hover:bg-muted text-muted-foreground hover:text-foreground rounded transition-colors"
+                  >
+                    {t("boundary.copy")}
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>

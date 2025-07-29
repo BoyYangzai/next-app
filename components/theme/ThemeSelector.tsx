@@ -55,7 +55,7 @@ const THEME_CONFIG = {
 
 const ThemeSelector: FC<ThemeSelectorProps> = observer(({ className = "" }) => {
   const { theme, setTheme, themes } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useTranslation("theme");
   const [mounted, setMounted] = useState(false);
 
   // 确保组件在客户端挂载后才渲染

@@ -1,0 +1,27 @@
+{
+  "title": "SEO 功能测试",
+  "subtitle": "全面测试和验证 SEO 配置，包括 meta 标签、Open Graph、Twitter Card 等",
+  "description": "全面测试和验证 SEO 配置，包括 meta 标签、Open Graph、Twitter Card 等",
+  "metaTags": "Meta 标签",
+  "structuredData": "结构化数据",
+  "tools": "SEO 工具",
+  "configuration": "配置说明",
+  "pageTitle": "SEO 测试页面",
+  "pageDescription": "检测和验证当前页面的 SEO 配置",
+  "currentPageMeta": "当前页面 Meta 信息",
+  "openGraph": "Open Graph 标签",
+  "twitterCard": "Twitter Card 标签",
+  "technicalSeo": "技术 SEO",
+  "seoTools": "SEO 分析工具",
+  "toolsDescription": "使用这些工具来分析和优化你的 SEO",
+  "features": {
+    "metaOptimization": "Meta 标签优化",
+    "openGraphSupport": "Open Graph 支持",
+    "twitterCardSupport": "Twitter Card 支持",
+    "structuredDataSupport": "结构化数据支持",
+    "multiLanguage": "多语言 SEO",
+    "canonicalUrls": "规范化 URL",
+    "robotsOptimization": "Robots 优化",
+    "sitemapGeneration": "站点地图生成"
+  }
+}

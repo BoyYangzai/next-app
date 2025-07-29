@@ -1,0 +1,93 @@
+{
+  "title": "Feature Testing Lab",
+  "subtitle": "Modern frontend technology testing platform based on Next.js 15 + Tailwind CSS 4.x + MobX",
+  "technologies": {
+    "nextjs": "Next.js 15",
+    "tailwind": "Tailwind CSS 4.x",
+    "mobx": "MobX",
+    "typescript": "TypeScript",
+    "i18n": "Internationalization (i18n)"
+  },
+  "cards": {
+    "theme": {
+      "title": "Theme Testing",
+      "subtitle": "Tailwind CSS 4.x Theme Switching",
+      "description": "Experience Tailwind CSS 4.x multi-theme switching functionality with 7 beautiful themes and zero-flicker switching.",
+      "features": {
+        "title": "Key Features:",
+        "items": [
+          "7 built-in themes + custom themes",
+          "CSS-First configuration approach",
+          "Seamless theme switching animation",
+          "Complete design token system"
+        ]
+      },
+      "action": "Click to Experience →"
+    },
+    "state": {
+      "title": "State Management",
+      "subtitle": "MobX Cross-Component State Management",
+      "description": "Verify MobX's cross-component reactive state management capabilities through multiple independent components.",
+      "features": {
+        "title": "Test Features:",
+        "items": [
+          "Cross-component state synchronization",
+          "Computed properties real-time updates",
+          "State persistence to local storage",
+          "Cross-page state retention"
+        ]
+      },
+      "action": "Click to Test →"
+    },
+    "errorBoundary": {
+      "title": "ErrorBoundary Error Boundary Demo",
+      "description": "Demonstrate how React ErrorBoundary gracefully catches and handles component errors",
+      "action": "Click button to trigger error or view full features",
+      "learnMore": "📖 Learn More",
+      "learnMoreDesc": "ErrorBoundary is an important error handling mechanism in modern React applications that prevents errors in individual components from affecting the entire application.",
+      "viewDemo": "View Full Demo →"
+    }
+  },
+  "architecture": {
+    "title": "🏗️ Technical Architecture Features",
+    "features": {
+      "tailwind": {
+        "title": "Tailwind CSS 4.x",
+        "description": "Built on Rust engine, 10x faster build speed, supports CSS-First configuration"
+      },
+      "mobx": {
+        "title": "MobX State Management",
+        "description": "Simple and intuitive reactive state management with automatic dependency tracking and minimal re-renders"
+      },
+      "i18n": {
+        "title": "Internationalization Support",
+        "description": "Complete i18n solution with dynamic language switching and SSR-friendly"
+      }
+    }
+  },
+  "highlights": {
+    "title": "✨ Project Highlights",
+    "development": {
+      "title": "🎯 Development Experience Optimization",
+      "items": [
+        "Complete TypeScript type safety",
+        "Unified code standards and formatting",
+        "Modular component architecture design",
+        "Complete development toolchain configuration"
+      ]
+    },
+    "performance": {
+      "title": "🚀 Performance & Experience",
+      "items": [
+        "Next.js 15 App Router latest features",
+        "Seamless theme switching animation",
+        "Perfect responsive design adaptation",
+        "State persistence and recovery mechanism"
+      ]
+    }
+  },
+  "footer": {
+    "pageNavigation": "Page Navigation",
+    "times": "times"
+  }
+}
