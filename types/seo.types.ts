@@ -1,7 +1,7 @@
 import { Languages } from "@/i18n/settings";
 
 // 页面类型
-export type PageType = "home" | "theme" | "counter" | "seo";
+export type PageType = "home" | "theme" | "counter" | "seo" | "errorBoundary";
 
 // SEO 基础配置接口
 export interface SeoConfig {

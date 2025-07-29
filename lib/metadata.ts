@@ -109,6 +109,8 @@ export function generatePageMetadata(
     page = "counter";
   } else if (pathname.includes("seo")) {
     page = "seo";
+  } else if (pathname.includes("error-boundary")) {
+    page = "errorBoundary";
   } else {
     page = "home";
   }
@@ -129,6 +131,9 @@ export const metadataGenerators = {
 
   // SEO 测试页面
   seo: (lang: Languages) => generateMetadata(lang, "seo"),
+
+  // ErrorBoundary 测试页面
+  errorBoundary: (lang: Languages) => generateMetadata(lang, "errorBoundary"),
 
   // 根页面（站点级别）
   root: (lang: Languages) => generateMetadata(lang),

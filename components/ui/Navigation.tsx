@@ -55,6 +55,15 @@ const Navigation: FC<NavigationProps> = observer(
         icon: "📊",
         color: "bg-orange-500/10 text-orange-600 border-orange-200",
       },
+      {
+        key: "error-boundary",
+        href: `/${lang}/error-boundary`,
+        label: "错误边界",
+        description: "ErrorBoundary 错误处理测试",
+        shortLabel: "错误",
+        icon: "🚨",
+        color: "bg-red-500/10 text-red-600 border-red-200",
+      },
     ];
 
     // 根据当前路径判断激活状态

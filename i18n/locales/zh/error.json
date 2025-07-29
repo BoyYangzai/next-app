@@ -1,0 +1,9 @@
+{
+  "boundary": {
+    "title": "出现错误",
+    "alt": "错误图标",
+    "retry": "重试",
+    "reload": "刷新页面",
+    "details": "详细信息"
+  }
+}

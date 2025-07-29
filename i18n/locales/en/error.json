@@ -1,0 +1,9 @@
+{
+  "boundary": {
+    "title": "Error Occurred",
+    "alt": "Error Icon",
+    "retry": "Retry",
+    "reload": "Reload Page",
+    "details": "Details"
+  }
+}

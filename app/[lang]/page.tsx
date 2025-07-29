@@ -6,7 +6,8 @@ import { useStore } from "@/store";
 import { useTranslation } from "@/i18n/client";
 import Link from "next/link";
 import { useLang } from "@/i18n/i18n-context";
-import { Navigation, LanguageSwitcher } from "@/components/ui";
+import { Navigation, LanguageSwitcher, ErrorTrigger } from "@/components/ui";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const HomePage: FC = observer(() => {
   const { global } = useStore();
@@ -204,6 +205,41 @@ const HomePage: FC = observer(() => {
                 </div>
               </div>
             </Link>
+          </section>
+
+          {/* ErrorBoundary 测试区域 */}
+          <section className="theme-card p-8">
+            <div className="text-center space-y-4 mb-8">
+              <h3 className="text-2xl font-bold text-foreground">
+                🚨 ErrorBoundary 错误边界演示
+              </h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                演示 React ErrorBoundary
+                如何优雅地捕获和处理组件错误，点击按钮触发错误或查看完整功能
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ErrorBoundary>
+                <ErrorTrigger />
+              </ErrorBoundary>
+
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-card-foreground">
+                  📖 了解更多
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  ErrorBoundary 是现代 React
+                  应用中重要的错误处理机制，可以防止单个组件的错误影响整个应用。
+                </p>
+                <Link
+                  href={`/${lang}/error-boundary`}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
+                >
+                  查看完整演示 →
+                </Link>
+              </div>
+            </div>
           </section>
 
           {/* 技术架构说明 */}

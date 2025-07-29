@@ -71,6 +71,42 @@ export const pagesConfig: Record<PageType, PageConfig> = {
     },
   },
 
+  // ErrorBoundary 测试页面配置
+  errorBoundary: {
+    route: "/error-boundary",
+    enabled: true,
+    seo: {
+      zh: {
+        title: "ErrorBoundary 错误边界测试 - React 错误处理机制演示",
+        description:
+          "演示 React ErrorBoundary 错误边界组件如何优雅地捕获和处理组件错误，提供用户友好的错误界面和重试机制",
+        keywords: [
+          "React ErrorBoundary",
+          "错误边界",
+          "错误处理",
+          "React 错误捕获",
+          "组件错误",
+          "错误恢复",
+          "用户体验",
+        ],
+      },
+      en: {
+        title: "ErrorBoundary Testing - React Error Handling Mechanism Demo",
+        description:
+          "Demonstrate how React ErrorBoundary component gracefully catches and handles component errors, providing user-friendly error interfaces and retry mechanisms",
+        keywords: [
+          "React ErrorBoundary",
+          "Error Boundary",
+          "Error Handling",
+          "React Error Catching",
+          "Component Error",
+          "Error Recovery",
+          "User Experience",
+        ],
+      },
+    },
+  },
+
   // 计数器页面配置
   counter: {
     route: "/counter",
