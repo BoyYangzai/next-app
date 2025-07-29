@@ -17,19 +17,33 @@ const HomePage: FC = observer(() => {
     <div className="min-h-screen bg-background text-foreground animate-theme-transition">
       {/* 顶部导航栏 */}
       <header className="theme-card border-b sticky top-0 z-50 backdrop-blur-sm bg-card/95">
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="text-center lg:text-left">
-              <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                🚀 {t("app.title")}
-              </h1>
-              <p className="text-muted-foreground">{t("app.subtitle")}</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* 左侧品牌区域 - 简化设计 */}
+            <div className="flex items-center gap-3">
+              <div className="text-2xl lg:text-3xl">🚀</div>
+              <div className="hidden sm:block">
+                <h1 className="text-lg lg:text-xl font-bold text-foreground">
+                  {t("app.title")}
+                </h1>
+                <p className="text-xs lg:text-sm text-muted-foreground hidden lg:block">
+                  现代前端技术栈演示
+                </p>
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            {/* 右侧操作区域 */}
+            <div className="flex items-center gap-3 lg:gap-4">
               <LanguageSwitcher />
-              <Navigation className="flex-shrink-0" />
+              <div className="hidden lg:block">
+                <Navigation variant="compact" />
+              </div>
             </div>
+          </div>
+
+          {/* 移动端导航 */}
+          <div className="lg:hidden pb-4">
+            <Navigation />
           </div>
         </div>
       </header>

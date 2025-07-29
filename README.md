@@ -1,5 +1,7 @@
 # 🚀 功能测试实验室 - Feature Testing Lab
 
+[![GitHub](https://img.shields.io/badge/GitHub-BoyYangzai%2Fnext--app-blue?logo=github)](https://github.com/BoyYangzai/next-app)
+
 基于 Next.js 15 + Tailwind CSS 4.x + MobX 的现代前端技术脚手架，专注于最新技术的实践与验证。
 
 ## 🎯 项目概述
@@ -52,7 +54,7 @@
 1. **克隆项目**
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/BoyYangzai/next-app.git
 cd next-app
 ```
 

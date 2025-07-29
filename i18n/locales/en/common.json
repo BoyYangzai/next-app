@@ -49,7 +49,17 @@
     "themeTest": "Themes",
     "themeTestDesc": "Multi-theme Switch",
     "mobxTest": "MobX Test",
-    "mobxTestDesc": "State Management"
+    "mobxTestDesc": "State Management",
+    "seoTest": "SEO Test",
+    "seoTestDesc": "SEO Validation"
+  },
+  "seo": {
+    "title": "SEO Testing",
+    "description": "Comprehensive testing and validation of SEO configurations, including meta tags, Open Graph, Twitter Card, etc.",
+    "metaTags": "Meta Tags",
+    "structuredData": "Structured Data",
+    "tools": "SEO Tools",
+    "configuration": "Configuration"
   },
   "theme": {
     "title": "Tailwind CSS 4.x Multi-Theme System",

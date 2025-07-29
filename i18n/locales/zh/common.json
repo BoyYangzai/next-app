@@ -49,7 +49,17 @@
     "themeTest": "主题",
     "themeTestDesc": "多主题切换",
     "mobxTest": "MobX测试",
-    "mobxTestDesc": "状态管理"
+    "mobxTestDesc": "状态管理",
+    "seoTest": "SEO测试",
+    "seoTestDesc": "SEO验证"
+  },
+  "seo": {
+    "title": "SEO 功能测试",
+    "description": "全面测试和验证 SEO 配置，包括 meta 标签、Open Graph、Twitter Card 等",
+    "metaTags": "Meta 标签",
+    "structuredData": "结构化数据",
+    "tools": "SEO 工具",
+    "configuration": "配置说明"
   },
   "theme": {
     "title": "Tailwind CSS 4.x 多主题系统",

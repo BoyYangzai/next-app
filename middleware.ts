@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // 排除静态文件和 API 路由
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.gif$|.*\\.svg$).*)",
+    // 排除静态文件、API 路由、sitemap.xml 和 robots.txt
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.gif$|.*\\.svg$).*)",
   ],
 };

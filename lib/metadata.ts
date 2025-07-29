@@ -107,6 +107,8 @@ export function generatePageMetadata(
     page = "theme";
   } else if (pathname.includes("counter")) {
     page = "counter";
+  } else if (pathname.includes("seo")) {
+    page = "seo";
   } else {
     page = "home";
   }
@@ -124,6 +126,9 @@ export const metadataGenerators = {
 
   // 计数器/MobX 页面
   counter: (lang: Languages) => generateMetadata(lang, "counter"),
+
+  // SEO 测试页面
+  seo: (lang: Languages) => generateMetadata(lang, "seo"),
 
   // 根页面（站点级别）
   root: (lang: Languages) => generateMetadata(lang),

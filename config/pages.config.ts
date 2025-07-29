@@ -105,6 +105,44 @@ export const pagesConfig: Record<PageType, PageConfig> = {
       },
     },
   },
+
+  // SEO 测试页面配置
+  seo: {
+    route: "/seo",
+    enabled: true,
+    seo: {
+      zh: {
+        title: "SEO 功能测试 - 搜索引擎优化验证工具",
+        description:
+          "全面测试和验证 SEO 配置，包括 meta 标签、Open Graph、Twitter Card、结构化数据等搜索引擎优化功能",
+        keywords: [
+          "SEO 测试",
+          "搜索引擎优化",
+          "meta 标签",
+          "Open Graph",
+          "Twitter Card",
+          "结构化数据",
+          "站点地图",
+          "robots.txt",
+        ],
+      },
+      en: {
+        title: "SEO Testing - Search Engine Optimization Validation Tool",
+        description:
+          "Comprehensive testing and validation of SEO configurations, including meta tags, Open Graph, Twitter Card, structured data and other search engine optimization features",
+        keywords: [
+          "SEO Testing",
+          "Search Engine Optimization",
+          "Meta Tags",
+          "Open Graph",
+          "Twitter Card",
+          "Structured Data",
+          "Sitemap",
+          "Robots.txt",
+        ],
+      },
+    },
+  },
 };
 
 // 辅助函数：获取启用的页面
