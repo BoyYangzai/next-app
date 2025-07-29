@@ -46,7 +46,8 @@
     "lint-staged": "^15.2.0",
     "postcss": "^8",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prettier": "^3.3.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs}": [

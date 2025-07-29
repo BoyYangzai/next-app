@@ -1,3 +1,15 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"]
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["next/babel"]
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-unused-vars": "off"
+  },
+  "ignorePatterns": ["node_modules/", ".next/", "out/", "public/", "*.json"]
 }
