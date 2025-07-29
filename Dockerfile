@@ -30,10 +30,18 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# 复制 package.json 和 pnpm-lock.yaml
+COPY package.json pnpm-lock.yaml* ./
+
+# 安装 pnpm
+RUN npm install -g pnpm
+
+# 安装生产依赖
+RUN pnpm install --frozen-lockfile --prod
+
 # 复制构建产物
 COPY --from=base /app/public ./public
-COPY --from=base --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=base --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=base /app/.next ./.next
 
 USER nextjs
 
@@ -42,4 +50,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "server.js"] 
+CMD ["pnpm", "start"] 

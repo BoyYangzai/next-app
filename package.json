@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node .next/standalone/server.js",
-    "start:dev": "next start",
+    "start": "next start",
     "lint": "next lint --fix",
     "lint:check": "next lint",
     "prepare": "husky install"

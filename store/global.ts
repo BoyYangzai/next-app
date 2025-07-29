@@ -11,25 +11,33 @@ export type Theme =
 export type Language = "zh" | "en";
 
 export const THEMES = {
-  light: { nameKey: "themes.light", color: "#3B82F6", className: "" },
-  dark: { nameKey: "themes.dark", color: "#1E293B", className: "theme-dark" },
-  blue: { nameKey: "themes.blue", color: "#2563EB", className: "theme-blue" },
+  light: { nameKey: "themes.light.name", color: "#3B82F6", className: "" },
+  dark: {
+    nameKey: "themes.dark.name",
+    color: "#1E293B",
+    className: "theme-dark",
+  },
+  blue: {
+    nameKey: "themes.blue.name",
+    color: "#2563EB",
+    className: "theme-blue",
+  },
   green: {
-    nameKey: "themes.green",
+    nameKey: "themes.green.name",
     color: "#22C55E",
     className: "theme-green",
   },
   purple: {
-    nameKey: "themes.purple",
+    nameKey: "themes.purple.name",
     color: "#9333EA",
     className: "theme-purple",
   },
   orange: {
-    nameKey: "themes.orange",
+    nameKey: "themes.orange.name",
     color: "#F97316",
     className: "theme-orange",
   },
-  red: { nameKey: "themes.red", color: "#EF4444", className: "theme-red" },
+  red: { nameKey: "themes.red.name", color: "#EF4444", className: "theme-red" },
 };
 
 export const LANGUAGES = {

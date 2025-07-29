@@ -12,6 +12,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 const HomePage: FC = observer(() => {
   const { global } = useStore();
   const { t } = useTranslation("home");
+  const { t: tTheme } = useTranslation("theme");
   const lang = useLang();
 
   return (
@@ -343,7 +344,7 @@ const HomePage: FC = observer(() => {
                 <span>
                   {t("footer.currentState")}:{" "}
                   <strong className="text-card-foreground">
-                    {t(global.stats.currentTheme)}
+                    {tTheme(global.currentTheme.nameKey)}
                   </strong>
                 </span>
               </div>

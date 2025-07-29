@@ -106,7 +106,7 @@ const Counter: FC<CounterProps> = observer(() => {
                 {t("currentTheme")}:
               </span>
               <span className="font-medium text-card-foreground">
-                {global.currentTheme.name}
+                {t(global.currentTheme.nameKey)}
               </span>
             </div>
             <div className="flex justify-between">
