@@ -42,9 +42,14 @@ COPY --from=base /app/.next ./.next
 COPY --from=base /app/next.config.mjs ./
 COPY --from=base /app/middleware.ts ./
 
-# 复制运行时动态加载的文件
+# 复制运行时必需的应用文件
 COPY --from=base /app/app ./app
+COPY --from=base /app/components ./components
+COPY --from=base /app/config ./config
 COPY --from=base /app/i18n ./i18n
+COPY --from=base /app/lib ./lib
+COPY --from=base /app/store ./store
+COPY --from=base /app/theme ./theme
 
 # 安装生产依赖（跳过 prepare 脚本）
 RUN pnpm install --frozen-lockfile --prod --ignore-scripts
