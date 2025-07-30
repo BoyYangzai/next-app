@@ -13,10 +13,10 @@ COPY package.json pnpm-lock.yaml* ./
 # 安装 pnpm
 RUN npm install -g pnpm
 
-# 安装依赖
-RUN pnpm install --frozen-lockfile
+# 安装依赖（跳过 prepare 脚本）
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
-# 复制项目文件
+# 复制所有源代码（构建时需要）
 COPY . .
 
 # 构建应用
@@ -30,16 +30,35 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# 复制构建产物
+# 复制 package.json 和 pnpm-lock.yaml
+COPY package.json pnpm-lock.yaml* ./
+
+# 安装 pnpm
+RUN npm install -g pnpm
+
+# 复制构建产物和运行时必需文件
 COPY --from=base /app/public ./public
-COPY --from=base --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=base --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=base /app/.next ./.next
+COPY --from=base /app/next.config.mjs ./
+COPY --from=base /app/middleware.ts ./
+
+# 复制运行时必需的应用文件
+COPY --from=base /app/app ./app
+COPY --from=base /app/components ./components
+COPY --from=base /app/config ./config
+COPY --from=base /app/i18n ./i18n
+COPY --from=base /app/lib ./lib
+COPY --from=base /app/store ./store
+COPY --from=base /app/theme ./theme
+
+# 安装生产依赖（跳过 prepare 脚本）
+RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "server.js"] 
+CMD ["pnpm", "start"] 
